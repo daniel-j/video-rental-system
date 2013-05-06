@@ -1,5 +1,9 @@
 
-public class SearchHandler
-{
+public class SearchHandler{
 
+	//Constructor
+	public SearchHandler(){
+		
+	}
+	
 }
