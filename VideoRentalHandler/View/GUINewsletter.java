@@ -127,14 +127,5 @@ public class GUINewsletter extends JFrame
 		
 		this.contentPane.add(panel);
 	}
-	
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args)
-	{
-		GUINewsletter nl = new GUINewsletter();
-		nl.setVisible(true);
-	}
 
 }

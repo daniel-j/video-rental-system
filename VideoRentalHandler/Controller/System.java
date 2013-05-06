@@ -25,7 +25,7 @@ public class System
 	}
 	public static void main(String[] args)
 	{
-		
+		System test = new System();
 
 	}
 
