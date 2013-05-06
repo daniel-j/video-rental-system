@@ -1,4 +1,4 @@
-package VideoRentalHouse;
+import Model.ItemPackage.Item;
 
 public class Customer 
 {
