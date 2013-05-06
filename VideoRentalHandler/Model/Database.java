@@ -1,6 +1,7 @@
 //In this package
 package Model;
-
+import Model.CustomerPackage.*;
+import Model.ItemPackage.*;
 //Import what this class use
 import java.io.IOException;
 import java.io.Serializable;
