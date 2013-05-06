@@ -7,12 +7,12 @@ import Model.NewsletterPackage.*;
 
 public class RentalSystem
 {
-	CustomerHandler 	CustomerH;
-	ItemHandler 		ItemH;
-	NewsletterHandler 	NewsletterH;
-	RentalHandler 		RentalH;
-	SearchHandler 		SearchH;
-	Database 			databse;
+	private CustomerHandler 	CustomerH;
+	private ItemHandler 		ItemH;
+	private NewsletterHandler 	NewsletterH;
+	private RentalHandler 		RentalH;
+	private SearchHandler 		SearchH;
+	private Database 			databse;
 	
 	//Construct
 	public RentalSystem(){
