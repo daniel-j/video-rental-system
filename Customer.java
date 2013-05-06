@@ -1,6 +1,6 @@
 package videoRentalHouse;
 
-public class Costumer 
+public class Customer 
 {
 	private int id;
 	private String name;
@@ -9,7 +9,7 @@ public class Costumer
 	private String address;
 	private String preference;
 	
-	public Costumer() 
+	public Customer() 
 	{
 		super();
 		this.id = 0;
@@ -20,7 +20,7 @@ public class Costumer
 		this.preference = "";
 	}
 
-	public Costumer(int id, String name, String ssn, Item[] rentedItems,
+	public Customer(int id, String name, String ssn, Item[] rentedItems,
 			String address, String preference) 
 	{
 		super();
