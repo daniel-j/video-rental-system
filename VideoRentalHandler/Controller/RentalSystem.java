@@ -5,7 +5,7 @@ import Model.CustomerPackage.*;
 import Model.ItemPackage.*;
 import Model.NewsletterPackage.*;
 
-public class System
+public class RentalSystem
 {
 	CustomerHandler 	CustomerH;
 	ItemHandler 		ItemH;
@@ -15,7 +15,7 @@ public class System
 	Database 			databse;
 	
 	//Construct
-	public System(){
+	public RentalSystem(){
 		//Handlers and Database
 		this.CustomerH 		= new CustomerHandler();
 		this.ItemH 			= new ItemHandler();
@@ -28,7 +28,7 @@ public class System
 	
 	public static void main(String[] args)
 	{
-		System test = new System();
+		RentalSystem test = new RentalSystem();
 
 	}
 
