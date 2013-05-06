@@ -1,4 +1,4 @@
-package videoRentalHandlerGUI;
+package VideoRentalHandlerGUI;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import videoRentalHouse.SearchHandler;
+import VideoRentalHouse.SearchHandler;
 
 public class SearchHandlerGUI extends JFrame
 {

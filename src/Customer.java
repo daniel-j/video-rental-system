@@ -1,4 +1,4 @@
-package videoRentalHouse;
+package VideoRentalHouse;
 
 public class Customer 
 {
