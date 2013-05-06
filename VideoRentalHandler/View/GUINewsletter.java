@@ -1,4 +1,7 @@
+//In this package
 package View;
+
+//Import what this class use
 
 import java.awt.Container;
 import java.awt.Dimension;

@@ -1,3 +1,7 @@
+//In this package
+package Model;
+
+//Import what this class use
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Vector;
