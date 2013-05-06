@@ -1,4 +1,8 @@
-package videoRentalHandlerGUI;
+//In this package
+package View;
+
+//Import what this class use
+
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -14,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
-public class GUILogin extends JFrame
+public class GuiLogin extends JFrame
 {
 	/**
 	 * 
@@ -78,12 +82,13 @@ public class GUILogin extends JFrame
 		
 	}
 	
-	public GUILogin() 
+	public GuiLogin() 
 	{
 		super();
 		initiateInstanceVariables();
 		configureFrame();
 		createPanel();	
+		this.setVisible(true);
 	}
 	
 	private void initiateInstanceVariables()
@@ -100,7 +105,6 @@ public class GUILogin extends JFrame
 		this.setSize(800, 400);
 		this.setTitle("Log In :: Video Rental System 1.0");
 		this.setLocationRelativeTo(null);
-		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
@@ -149,13 +153,6 @@ public class GUILogin extends JFrame
 			button.addActionListener(buttonListener);
 		}
 		thePanel.add(buttonPanel);
-	}
-	
-	public static void main(String[] args) 
-	{
-		GUILogin gui = new GUILogin();
-		gui.setVisible(true);
-
 	}
 	
 }

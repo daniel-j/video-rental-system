@@ -1,4 +1,7 @@
-import Model.ItemPackage.Item;
+//In this package
+package Model.CustomerPackage;
+//Import what this class use
+import Model.ItemPackage.*;
 
 public class Customer 
 {

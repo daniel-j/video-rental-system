@@ -1,4 +1,9 @@
+//In this package
 package View;
+
+//Import what this class use
+import Model.*;
+
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -14,7 +19,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import VideoRentalHouse.SearchHandler;
 
 public class GUISearch extends JFrame
 {
