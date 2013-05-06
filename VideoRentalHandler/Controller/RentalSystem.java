@@ -29,6 +29,7 @@ public class RentalSystem
 	public static void main(String[] args)
 	{
 		RentalSystem test = new RentalSystem();
+		System.out.println("Hej");
 
 	}
 
