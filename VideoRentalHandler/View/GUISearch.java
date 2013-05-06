@@ -1,4 +1,4 @@
-package VideoRentalHandlerGUI;
+package View;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -16,7 +16,7 @@ import javax.swing.JTextField;
 
 import VideoRentalHouse.SearchHandler;
 
-public class SearchHandlerGUI extends JFrame
+public class GUISearch extends JFrame
 {
 
 	/**
@@ -106,7 +106,7 @@ public class SearchHandlerGUI extends JFrame
 			
 		}
 		
-		public SearchHandlerGUI() 
+		public GUISearch() 
 		{
 			super();
 			initiateInstanceVariables();
