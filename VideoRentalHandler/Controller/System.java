@@ -1,5 +1,5 @@
 
-public class Tets
+public class System
 {
 
 	/**
