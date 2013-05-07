@@ -1,8 +1,4 @@
-//In this package
-package View;
-
-//Import what this class use
-
+package videoRentalHandlerGUI;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -15,10 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 
-public class GuiLogin extends JFrame
+public class GUILogin extends JFrame
 {
 	/**
 	 * 
@@ -26,7 +23,8 @@ public class GuiLogin extends JFrame
 	private static final long serialVersionUID = 1L;
 	private Container contentPane;
 	private JTextField userNameField;
-	private JTextField passwordField;
+	//private JTextField passwordField;
+	private JPasswordField passwordField;
 	
 	private class ButtonListener implements ActionListener
 	{
@@ -40,6 +38,7 @@ public class GuiLogin extends JFrame
 				if(logIn() == true)
 				{
 					JOptionPane.showMessageDialog(null, "You have entered the system!");
+					clearFields();
 					//enterSystem();
 				}
 				else
@@ -67,6 +66,7 @@ public class GuiLogin extends JFrame
 		String pass = "password";
 		
 		String userName = this.userNameField.getText();
+		@SuppressWarnings("deprecation")
 		String password = this.passwordField.getText();
 		
 		if(userName.equals(username) && password.equals(pass))
@@ -82,13 +82,12 @@ public class GuiLogin extends JFrame
 		
 	}
 	
-	public GuiLogin() 
+	public GUILogin() 
 	{
 		super();
 		initiateInstanceVariables();
 		configureFrame();
 		createPanel();	
-		this.setVisible(true);
 	}
 	
 	private void initiateInstanceVariables()
@@ -96,7 +95,8 @@ public class GuiLogin extends JFrame
 		this.contentPane = this.getContentPane();
 		this.contentPane.setLayout(new GridLayout(1, 2));
 		this.userNameField = new JTextField();
-		this.passwordField = new JTextField();
+		//this.passwordField = new JTextField();
+		this.passwordField = new JPasswordField();
 		
 	}
 	
@@ -105,6 +105,7 @@ public class GuiLogin extends JFrame
 		this.setSize(800, 400);
 		this.setTitle("Log In :: Video Rental System 1.0");
 		this.setLocationRelativeTo(null);
+		
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
@@ -153,6 +154,13 @@ public class GuiLogin extends JFrame
 			button.addActionListener(buttonListener);
 		}
 		thePanel.add(buttonPanel);
+	}
+	
+	public static void main(String[] args) 
+	{
+		GUILogin gui = new GUILogin();
+		gui.setVisible(true);
+
 	}
 	
 }
