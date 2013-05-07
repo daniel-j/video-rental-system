@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -23,7 +24,6 @@ public class GUILogin extends JFrame
 	private static final long serialVersionUID = 1L;
 	private Container contentPane;
 	private JTextField userNameField;
-	//private JTextField passwordField;
 	private JPasswordField passwordField;
 	
 	private class ButtonListener implements ActionListener
@@ -63,13 +63,12 @@ public class GUILogin extends JFrame
 		boolean loggedIn = false;
 		
 		String username = "user";
-		String pass = "password";
+		char[] pass = {'p', 'a', 's', 's', 'w', 'o', 'r', 'd'};
 		
 		String userName = this.userNameField.getText();
-		@SuppressWarnings("deprecation")
-		String password = this.passwordField.getText();
+		char[] password = this.passwordField.getPassword();
 		
-		if(userName.equals(username) && password.equals(pass))
+		if(userName.equals(username) && Arrays.equals(pass, password))
 		{
 			loggedIn = true;
 		}
@@ -95,7 +94,6 @@ public class GUILogin extends JFrame
 		this.contentPane = this.getContentPane();
 		this.contentPane.setLayout(new GridLayout(1, 2));
 		this.userNameField = new JTextField();
-		//this.passwordField = new JTextField();
 		this.passwordField = new JPasswordField();
 		
 	}
