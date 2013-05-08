@@ -4,7 +4,6 @@ package View;
 //Import what this class use
 import Model.*;
 
-
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -19,7 +18,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
 public class GUISearch extends JFrame
 {
 
@@ -31,9 +29,9 @@ public class GUISearch extends JFrame
 	private Container contentPane;
 	private JTextField searchField;
 	private JList<String> resultList;
-	private SearchHandler searchHandler;
+	private RentalSystem rentalSystem;
 	
-	private class ButtonListener implements ActionListener
+	public class ButtonListener implements ActionListener
 	{
 
 		public void actionPerformed(ActionEvent e) // Executes when button pressed
@@ -67,9 +65,9 @@ public class GUISearch extends JFrame
 			{
 				String searchString = this.searchField.getText();
 				
-				if(this.searchHandler.SearchItem(searchString) != null)
+				if(this.RentalSystem.SearchHandler.SearchItem(searchString) != null)
 				{
-					this.resultList.setListData(searchHandler.SearchItem(searchString));
+					this.resultList.setListData(this.RentalSystem.SearchHandler.SearchItem(searchString));
 				}
 				else
 				{
@@ -90,11 +88,11 @@ public class GUISearch extends JFrame
 			if(this.searchField != null)
 			{
 				String searchString = this.searchField.getText();
-				this.searchHandler.SearchCostumer(searchString);
+				RentalSystem.SearchHandler.SearchCostumer(searchString);
 				
-				if(this.searchHandler.SearchItem(searchString) != null)
+				if(this.RentalSystem.SearchHandler.SearchItem(searchString) != null)
 				{
-					this.resultList.setListData(searchHandler.SearchCostumer(searchString));
+					this.resultList.setListData(this.RentalSystem.SearchHandler.SearchCostumer(searchString));
 				}
 				else
 				{
@@ -110,7 +108,7 @@ public class GUISearch extends JFrame
 			
 		}
 		
-		public GUISearch() 
+		public SearchHandlerGUI() 
 		{
 			super();
 			initiateInstanceVariables();
@@ -126,7 +124,7 @@ public class GUISearch extends JFrame
 			this.contentPane.setLayout(new GridLayout(1, 2));
 			this.searchField = new JTextField();
 			this.resultList = new JList<String>();
-			this.searchHandler = new SearchHandler();
+			this.RentalSystem = new RentalSystem();
 		}
 		
 		private void configureFrame()
@@ -184,6 +182,13 @@ public class GUISearch extends JFrame
 				button.addActionListener(buttonListener);
 			}
 			thePanel.add(buttonPanel);
+		}
+	
+		public static void main(String[] args) 
+		{
+			SearchHandlerGUI gui = new SearchHandlerGUI();
+			gui.setVisible(true);
+
 		}
 	
 }
