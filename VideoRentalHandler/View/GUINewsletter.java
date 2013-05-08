@@ -15,6 +15,7 @@ import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -25,12 +26,13 @@ public class GUINewsletter extends JFrame
 {
 	private static final long	serialVersionUID	= 1L;
 	private Container contentPane;
+	
 	private RentalSystem rentalSystem = null;
 	
-	private JTextField titleField 	  = null;
-	private JTextArea contentTextArea = null;
+	private JTextField titleField 	  			 = null;
+	private JTextArea contentTextArea 			 = null;
 	private JComboBox<String> preferenceComboBox = null;
-	private JList<String> addressList = null;
+	private JList<String> addressList 			 = null;
 	
 	private class ButtonListener implements ActionListener
 	{
@@ -41,7 +43,7 @@ public class GUINewsletter extends JFrame
 			
 			if(buttonText.equals("Get addresslist"))
 			{
-				//getAddressList
+				getAddressList();
 			}
 			else if(buttonText.equals("Send"))
 			{
@@ -50,11 +52,35 @@ public class GUINewsletter extends JFrame
 		}
 	}
 	
+	private void getAddressList()
+	{
+		if(this.preferenceComboBox.getSelectedIndex() == 1)
+		{
+			JOptionPane.showMessageDialog(null, "You can't have empty fields", "ERROR",
+				    JOptionPane.ERROR_MESSAGE);
+		}
+		else
+		{
+			rentalSystem.getNewsletterHandler().setTitle(this.titleField.getText());
+			rentalSystem.getNewsletterHandler().setContent(this.contentTextArea.getText());
+			rentalSystem.getNewsletterHandler().send();
+		}
+	}
+	
 	private void send()
 	{
-		rentalSystem.getNewsletterHandler().setTitle(this.titleField.getText());
-		rentalSystem.getNewsletterHandler().setContent(this.contentTextArea.getText());
-		rentalSystem.getNewsletterHandler().send();
+		if(this.titleField.getText().equals("") || this.contentTextArea.getText().equals("")
+				|| this.addressList.getModel().getSize() == 0)
+		{
+			JOptionPane.showMessageDialog(null, "You can't have empty fields", "ERROR",
+				    JOptionPane.ERROR_MESSAGE);
+		}
+		else
+		{
+			rentalSystem.getNewsletterHandler().setTitle(this.titleField.getText());
+			rentalSystem.getNewsletterHandler().setContent(this.contentTextArea.getText());
+			rentalSystem.getNewsletterHandler().send();
+		}
 	}
 	
 	public GUINewsletter()
