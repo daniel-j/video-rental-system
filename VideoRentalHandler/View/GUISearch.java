@@ -4,6 +4,11 @@ package View;
 //Import what this class use
 import Model.*;
 
+
+import gui.RentalSystem;
+import gui.SearchHandlerGUI;
+import gui.SearchHandlerGUI.ButtonListener;
+
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -18,10 +23,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class GUISearch extends JFrame
-{
 
-	/**
+public class GUISearch extends JFrame
+{/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -108,7 +112,7 @@ public class GUISearch extends JFrame
 			
 		}
 		
-		public SearchHandlerGUI() 
+		public GUISearch() 
 		{
 			super();
 			initiateInstanceVariables();
