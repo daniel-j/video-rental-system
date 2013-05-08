@@ -26,14 +26,13 @@ public class GUINewsletter extends JFrame
 {
 	private static final long	serialVersionUID	= 1L;
 	private Container contentPane;
-	
 	private RentalSystem rentalSystem = null;
 	
 	private JTextField titleField 	  			 = null;
 	private JTextArea contentTextArea 			 = null;
 	private JComboBox<String> preferenceComboBox = null;
 	private JList<String> addressList 			 = null;
-	
+
 	private class ButtonListener implements ActionListener
 	{
 		@Override
@@ -52,6 +51,9 @@ public class GUINewsletter extends JFrame
 		}
 	}
 	
+	/**
+	 * Get addressList
+	 */
 	private void getAddressList()
 	{
 		if(this.preferenceComboBox.getSelectedIndex() == 1)
@@ -67,6 +69,9 @@ public class GUINewsletter extends JFrame
 		}
 	}
 	
+	/**
+	 * Send newsletter
+	 */
 	private void send()
 	{
 		if(this.titleField.getText().equals("") || this.contentTextArea.getText().equals("")
@@ -83,6 +88,9 @@ public class GUINewsletter extends JFrame
 		}
 	}
 	
+	/**
+	 * Constructor
+	 */
 	public GUINewsletter()
 	{
 		super();
@@ -92,6 +100,9 @@ public class GUINewsletter extends JFrame
 		buildRightPanel();
 	}
 	
+	/**
+	 * Configure frame
+	 */
 	private void configureFrame()
 	{
 		this.setSize(800, 400);
@@ -101,6 +112,9 @@ public class GUINewsletter extends JFrame
 		this.setVisible(true);
 	}
 	
+	/**
+	 * Initiate instance variables
+	 */
 	private void initiateInstanceVariables()
 	{
 		this.contentPane = this.getContentPane();
@@ -113,6 +127,9 @@ public class GUINewsletter extends JFrame
 		this.addressList = new JList<String>();
 	}
 	
+	/**
+	 * Build left panel with misc components
+	 */
 	private void buildLeftPanel()
 	{
 		JPanel panel = new JPanel();
@@ -144,6 +161,9 @@ public class GUINewsletter extends JFrame
 		this.contentPane.add(panel);
 	}
 	
+	/**
+	 * Build right panel with misc components
+	 */
 	private void buildRightPanel()
 	{
 		JPanel panel = new JPanel();

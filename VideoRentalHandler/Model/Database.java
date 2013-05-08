@@ -1,40 +1,80 @@
 //In this package
 package Model;
+
+//Import what this class use
 import Model.CustomerPackage.*;
 import Model.ItemPackage.*;
-//Import what this class use
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.Vector;
 
 public class Database implements Serializable
 {
+	private static final long	serialVersionUID	= 1L;
 	private Vector<Item> items;
 	private Vector<Customer> customers;
 	
+	/**
+	 * Constructor
+	 */
 	public Database()
 	{
 		this.items = new Vector<Item>();
 		this.customers = new Vector<Customer>();
 	}
 	
+	/**
+	 * Add item to "database"
+	 * @param item		Item to be saved
+	 */
 	public void addItem(Item item)
 	{
 		this.items.add(item);
 	}
 	
+	/**
+	 * Add customer to "database"
+	 * @param customer	Customer to be saved
+	 */
 	public void addCustomer(Customer customer)
 	{
 		this.customers.add(customer);
 	}
 	
-	public Item getItem(int i)
+	/**
+	 * Add list of items to "database"
+	 * @param itemList		List of items to be saved
+	 */
+	public void addItemList(Vector<Item> itemList)
 	{
-		return this.items.get(i);
+		this.items = itemList;
 	}
 	
-	public Customer getCustomer(int i)
+	/**
+	 * Add list of customers to "database"
+	 * @param customerList	List of customers to be saved
+	 */
+	public void addCustomerList(Vector<Customer> customerList)
 	{
-		return this.customers.get(i);
+		this.customers = customerList;
+	}
+	
+	/**
+	 * Get item
+	 * @param index		Index of item
+	 * @return			Item
+	 */
+	public Item getItem(int index)
+	{
+		return this.items.get(index);
+	}
+	
+	/**
+	 * Get customer
+	 * @param index		Index of customer
+	 * @return			Customer
+	 */
+	public Customer getCustomer(int index)
+	{
+		return this.customers.get(index);
 	}
 }
