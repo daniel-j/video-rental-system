@@ -1,13 +1,15 @@
 //In this package
 package View;
+import Controller.RentalSystem;
 
 //Import what this class use
 
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -23,6 +25,37 @@ public class GUINewsletter extends JFrame
 {
 	private static final long	serialVersionUID	= 1L;
 	private Container contentPane;
+	private RentalSystem rentalSystem = null;
+	
+	private JTextField titleField 	  = null;
+	private JTextArea contentTextArea = null;
+	private JComboBox<String> preferenceComboBox = null;
+	private JList<String> addressList = null;
+	
+	private class ButtonListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent event)
+		{
+			String buttonText = event.getActionCommand();
+			
+			if(buttonText.equals("Get addresslist"))
+			{
+				//getAddressList
+			}
+			else if(buttonText.equals("Send"))
+			{
+				send();
+			}	
+		}
+	}
+	
+	private void send()
+	{
+		rentalSystem.getNewsletterHandler().setTitle(this.titleField.getText());
+		rentalSystem.getNewsletterHandler().setContent(this.contentTextArea.getText());
+		rentalSystem.getNewsletterHandler().send();
+	}
 	
 	public GUINewsletter()
 	{
@@ -39,12 +72,19 @@ public class GUINewsletter extends JFrame
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setTitle("Newsletter");
 		this.setLocationRelativeTo(null);
+		this.setVisible(true);
 	}
 	
 	private void initiateInstanceVariables()
 	{
 		this.contentPane = this.getContentPane();
 		this.contentPane.setLayout(new GridLayout(1, 2));
+		this.rentalSystem = new RentalSystem();
+		
+		this.titleField = new JTextField();
+		this.contentTextArea = new JTextArea();
+		this.preferenceComboBox = new JComboBox<String>();
+		this.addressList = new JList<String>();
 	}
 	
 	private void buildLeftPanel()
@@ -58,22 +98,20 @@ public class GUINewsletter extends JFrame
 		Dimension dim = label1.getPreferredSize();
 		label1.setSize(dim);
 		
-		JTextField textField = new JTextField();
-		textField.setLocation(25, 35);
-		textField.setSize(150, 25);
+		this.titleField.setLocation(25, 35);
+		this.titleField.setSize(150, 25);
 		
 		JLabel label2 = new JLabel("Content");
 		label2.setLocation(25, 95);
 		dim = label2.getPreferredSize();
 		label2.setSize(dim);
 		
-		JTextArea textArea = new JTextArea ();
-		JScrollPane jsp = new JScrollPane (textArea);
+		JScrollPane jsp = new JScrollPane (this.contentTextArea);
 		jsp.setSize(300, 200);
 		jsp.setLocation(25, 120);
 		
 		panel.add(label1);
-		panel.add(textField);
+		panel.add(this.titleField);
 		panel.add(label2);
 		panel.add(jsp);
 		
@@ -91,16 +129,18 @@ public class GUINewsletter extends JFrame
 		Dimension dim = label1.getPreferredSize();
 		label1.setSize(dim);
 		
-		JComboBox<String> c = new JComboBox<String>();
-		c.addItem("Drama");
-		c.addItem("Action");
-		c.addItem("Comedy");
+		this.preferenceComboBox.addItem("Drama");
+		this.preferenceComboBox.addItem("Action");
+		this.preferenceComboBox.addItem("Comedy");
 		
-		c.setLocation(25, 40);
-		dim = c.getPreferredSize();
-		c.setSize(dim);
+		this.preferenceComboBox.setLocation(25, 40);
+		dim = this.preferenceComboBox.getPreferredSize();
+		this.preferenceComboBox.setSize(dim);
+		
+		ButtonListener bListener = new ButtonListener();
 		
 		JButton button1 = new JButton("Get addresslist");
+		button1.addActionListener(bListener);
 		button1.setLocation(125, 40);
 		dim = button1.getPreferredSize();
 		button1.setSize(dim);
@@ -110,19 +150,18 @@ public class GUINewsletter extends JFrame
 		dim = label2.getPreferredSize();
 		label2.setSize(dim);
 		
-		JList<String> list = new JList<String>();
-		JScrollPane jsp = new JScrollPane(list);
+		JScrollPane jsp = new JScrollPane(this.addressList);
 		jsp.setSize(300, 140);
 		jsp.setLocation(25, 120);
 		
 		JButton button2 = new JButton("Send");
-		
+		button2.addActionListener(bListener);
 		button2.setLocation(25, 280);
 		dim = button2.getPreferredSize();
 		button2.setSize(dim);
 
 		panel.add(label1);
-		panel.add(c);
+		panel.add(this.preferenceComboBox);
 		panel.add(button1);
 		panel.add(label2);
 		panel.add(jsp);
