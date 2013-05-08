@@ -188,11 +188,4 @@ public class GUISearch extends JFrame
 			thePanel.add(buttonPanel);
 		}
 	
-		public static void main(String[] args) 
-		{
-			SearchHandlerGUI gui = new SearchHandlerGUI();
-			gui.setVisible(true);
-
-		}
-	
 }
