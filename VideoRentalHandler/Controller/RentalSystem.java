@@ -4,6 +4,7 @@ import Model.*;
 import Model.CustomerPackage.*;
 import Model.ItemPackage.*;
 import Model.NewsletterPackage.*;
+import View.GUINewsletter;
 import View.GUISystem;
 
 public class RentalSystem
@@ -12,12 +13,13 @@ public class RentalSystem
 	private ItemHandler 		ItemH;
 	private NewsletterHandler 	NewsletterH;
 	private RentalHandler 		RentalH;
-	private SearchHandler 		SearchH;
+	private	SearchHandler 		SearchH;
 	private Database 			databse;
 	private GUISystem			SystemGui;
 	
 	//Construct
-	public RentalSystem(){
+	public RentalSystem()
+	{
 		//Handlers and Database
 		this.CustomerH 		= new CustomerHandler();
 		this.ItemH 			= new ItemHandler();
@@ -29,11 +31,33 @@ public class RentalSystem
 		//---------------------------------------
 	}
 	
+	public CustomerHandler getCustomerHandler()
+	{
+		return this.CustomerH;
+	}
+	
+	public ItemHandler getItemHandler()
+	{
+		return this.ItemH;
+	}
+	
+	public NewsletterHandler getNewsletterHandler()
+	{
+		return this.NewsletterH;
+	}
+	
+	public RentalHandler getRentalHandler()
+	{
+		return this.RentalH;
+	}
+	
+	public SearchHandler getSerchHandler()
+	{
+		return this.SearchH;
+	}
+	
 	public static void main(String[] args)
 	{
-		RentalSystem test = new RentalSystem();
-		
-
+		GUINewsletter test = new GUINewsletter();
 	}
-
 }
