@@ -1,4 +1,4 @@
-package videoRentalHandlerGUI;
+package Model.ItemPackage;
 
 import java.sql.Date;
 

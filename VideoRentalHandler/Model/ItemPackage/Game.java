@@ -1,4 +1,4 @@
-package videoRentalHandlerGUI;
+package Model.ItemPackage;
 
 public class Game extends Item
 {
