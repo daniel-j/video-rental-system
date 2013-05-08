@@ -1,4 +1,4 @@
-package videoRentalHandlerGUI;
+package View;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -25,6 +25,7 @@ public class GUILogin extends JFrame
 	private Container contentPane;
 	private JTextField userNameField;
 	private JPasswordField passwordField;
+	private GUISystem guiSystem;
 	
 	private class ButtonListener implements ActionListener
 	{
@@ -39,7 +40,7 @@ public class GUILogin extends JFrame
 				{
 					JOptionPane.showMessageDialog(null, "You have entered the system!");
 					clearFields();
-					//enterSystem();
+					enterSystem();
 				}
 				else
 				{
@@ -78,7 +79,7 @@ public class GUILogin extends JFrame
 	
 	private void enterSystem()
 	{
-		
+	    this.guiSystem.setVisible(true);
 	}
 	
 	public GUILogin() 
@@ -95,6 +96,7 @@ public class GUILogin extends JFrame
 		this.contentPane.setLayout(new GridLayout(1, 2));
 		this.userNameField = new JTextField();
 		this.passwordField = new JPasswordField();
+		this.guiSystem = new GUISystem();
 		
 	}
 	
