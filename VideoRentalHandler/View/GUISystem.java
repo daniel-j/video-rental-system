@@ -38,10 +38,10 @@ public class GUISystem extends JFrame
     public GUISystem(RentalSystem MainSystem)
 	{
 	    super();
+	    this.MainSystemReference = MainSystem;
 		initiateInstanceVariables();
 		configureFrame();
-		buildPanel();
-		this.MainSystemReference = MainSystem;
+		buildPanel();	
 	}
     
     public class ButtonListener implements ActionListener
@@ -92,8 +92,6 @@ public class GUISystem extends JFrame
 
 	private void enterSearch() 
 	{
-		SearchHandler SearchH = this.MainSystemReference.getSerchHandler();
-		this.guiSearch = new GUISearch(SearchH);
 		guiSearch.setVisible(true);
 	    
 	}
@@ -106,13 +104,13 @@ public class GUISystem extends JFrame
 
 	private void enterCostumers() 
 	{
-	    guiCustomer.setVisible(true);
+	    //guiCustomer.setVisible(true);
 	    
 	}
 
 	private void enterRental() 
 	{
-	    guiRental.setVisible(true);
+	    //guiRental.setVisible(true);
 	    
 	}
 	
@@ -122,8 +120,12 @@ public class GUISystem extends JFrame
 		this.contentPane = this.getContentPane();
 		this.contentPane.setLayout(new GridLayout(1, 2));
 		
+		//Handlers
+		SearchHandler SearchH = this.MainSystemReference.getSerchHandler();
+		
+		//GUI
 		this.guiNewsLetter = new GUINewsletter();
-		this.guiSearch = new GUISearch();
+		this.guiSearch = new GUISearch(SearchH);
 		this.guiItem = new GUIItem();
 		this.guiCustomer = new GUICustomer();
 		this.guiRental = new GUIRental();
@@ -171,11 +173,5 @@ public class GUISystem extends JFrame
 		}
 		
 		thePanel.add(buttonPanel);
-	}
-	
-	public static void main(String[] args)
-	{
-	    GUISystem gui = new GUISystem();
-	    gui.setVisible(true);
 	}
 }

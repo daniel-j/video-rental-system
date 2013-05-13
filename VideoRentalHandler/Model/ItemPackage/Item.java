@@ -7,7 +7,7 @@ public abstract class Item
 	private String title;
 	private int Id = 0;
 	private boolean status;
-	private Date rentalExpireDate;
+	private int rentalExpireDate;
 	private int priceGroup;
 	private int inStock;
 	
@@ -25,7 +25,7 @@ public abstract class Item
 		this.Id = id;
 	}
 	
-	public Item(String title, int id, boolean status, Date rentalExpireDate, int priceGroup, int instock)
+	public Item(String title, int id, boolean status, int rentalExpireDate, int priceGroup, int instock)
 	{
 		super();
 		this.title = title;
@@ -60,11 +60,11 @@ public abstract class Item
 	{
 		this.status = status;
 	}
-	public Date getRentalExpireDate() 
+	public int getRentalExpireDate() 
 	{
 		return rentalExpireDate;
 	}
-	public void setRentalExpireDate(Date rentalExpireDate) 
+	public void setRentalExpireDate(int rentalExpireDate) 
 	{
 		this.rentalExpireDate = rentalExpireDate;
 	}

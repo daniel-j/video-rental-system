@@ -96,8 +96,6 @@ public class GUILogin extends JFrame
 		this.contentPane.setLayout(new GridLayout(1, 2));
 		this.userNameField = new JTextField();
 		this.passwordField = new JPasswordField();
-		this.guiSystem = new GUISystem();
-		
 	}
 	
 	private void configureFrame()

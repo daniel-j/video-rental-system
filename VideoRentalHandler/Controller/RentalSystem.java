@@ -29,7 +29,7 @@ public class RentalSystem
 		this.CustomerH 		= new CustomerHandler();
 		this.ItemH 			= new ItemHandler();
 		this.NewsletterH	= new NewsletterHandler();
-		this.SearchH 		= new SearchHandler();
+		this.SearchH 		= new SearchHandler(this.ItemH, this.CustomerH);
 		this.RentalH 		= new RentalHandler(this.ItemH, this.CustomerH);
 		this.database 		= new Database();
 		this.SystemGui		= new GUISystem(this);
