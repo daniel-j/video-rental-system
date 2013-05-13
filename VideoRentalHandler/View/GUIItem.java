@@ -15,15 +15,12 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Controller.RentalSystem;
-
 import Model.ItemPackage.*;
-
+import Model.ItemPackage.*;
 public class GUIItem extends JFrame
 {
 	private static final long serialVersionUID = 1L;
 	
-	private RentalSystem rentalSystem;
 	private Container contentPane;
 	private JList<String> output;
 	private JTextField title;
@@ -50,6 +47,7 @@ public class GUIItem extends JFrame
 	private String[] releaseYears;
 	private String selectedItem;
 	
+	private ItemHandler ItemH;
 	private class ButtonListener implements ActionListener
 	{
 
@@ -104,7 +102,7 @@ public class GUIItem extends JFrame
 				else
 				{
 					addItem();
-					output.setListData(rentalSystem.getItemHandler().getAllItemsAsStrings());
+					output.setListData(ItemH.getAllItemsAsStrings());
 					clearFields();
 				}
 			}
@@ -117,13 +115,13 @@ public class GUIItem extends JFrame
 				if(input != null)
 				{
 					id = Integer.parseInt(input);
-					if(rentalSystem.getItemHandler().getItemId(id) == -1)
+					if(ItemH.getItemId(id) == -1)
 					{
 						JOptionPane.showMessageDialog(null, "No item with that ID, or the list is empty!");
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(null, "There are: " + rentalSystem.getItemHandler().getItemId(id) + " items with ID: " + id + ".");
+						JOptionPane.showMessageDialog(null, "There are: " + ItemH.getItemId(id) + " items with ID: " + id + ".");
 					}
 				}
 				else
@@ -134,19 +132,19 @@ public class GUIItem extends JFrame
 			}
 			if(buttonText.equals("Get list of all"))
 			{
-				output.setListData(rentalSystem.getItemHandler().getAllItemsAsStrings());
+				output.setListData(ItemH.getAllItemsAsStrings());
 			}
 			if(buttonText.equals("Get all videos"))
 			{
-				output.setListData(rentalSystem.getItemHandler().getAllVideos());
+				output.setListData(ItemH.getAllVideos());
 			}
 			if(buttonText.equals("Get all games"))
 			{
-				output.setListData(rentalSystem.getItemHandler().getAllGames());
+				output.setListData(ItemH.getAllGames());
 			}
 			if(buttonText.equals("Show item info"))
 			{
-				output.setListData(rentalSystem.getItemHandler().getItemInfo(selectedItem));
+				output.setListData(ItemH.getItemInfo(selectedItem));
 				output.setEnabled(false);
 			}
 			if(buttonText.equals("Remove item"))
@@ -156,8 +154,8 @@ public class GUIItem extends JFrame
 					int answer = JOptionPane.showConfirmDialog(null, "You are about to delete: " + selectedItem + "! \n Are you sure?");
 					if(answer == 0)
 					{
-						rentalSystem.getItemHandler().removeItem(selectedItem);
-						output.setListData(rentalSystem.getItemHandler().getAllItemsAsStrings());
+						ItemH.removeItem(selectedItem);
+						output.setListData(ItemH.getAllItemsAsStrings());
 					}
 					else
 					{
@@ -186,14 +184,14 @@ public class GUIItem extends JFrame
 			{
 				String itemToChange = output.getSelectedValue();
 				changeItem(itemToChange);
-				output.setListData(rentalSystem.getItemHandler().getItemInfo(selectedItem));
+				output.setListData(ItemH.getItemInfo(selectedItem));
 				clearFields();
 				buttons[8].setEnabled(false);
 				output.setEnabled(false);
 			}
 			if(buttonText.equals("Edit pricegroup"))
 			{
-				output.setListData(rentalSystem.getItemHandler().listPriceGroups());
+				output.setListData(ItemH.listPriceGroups());
 				output.setEnabled(false);
 				String input = JOptionPane.showInputDialog("Wich pricegroup do you want to change?");
 				int pg = -1;
@@ -205,8 +203,8 @@ public class GUIItem extends JFrame
 					if(input2 != null)
 					{
 						price = Double.valueOf(input2);
-						rentalSystem.getItemHandler().editPricegroup(pg,  price);
-						output.setListData(rentalSystem.getItemHandler().listPriceGroups());
+						ItemH.editPricegroup(pg,  price);
+						output.setListData(ItemH.listPriceGroups());
 					}
 					else
 					{
@@ -235,17 +233,17 @@ public class GUIItem extends JFrame
 		
 		if(itemToHandle == 1)
 		{
-			this.rentalSystem.getItemHandler().addItem(itemToHandle, newTitle, newPriceGroup, newGenre, newReleaseYear, newMedium, nrOf);
+			this.ItemH.addItem(itemToHandle, newTitle, newPriceGroup, newGenre, newReleaseYear, newMedium, nrOf);
 		}
 		else
 		{
-			this.rentalSystem.getItemHandler().addItem(newTitle, newPriceGroup, newGenre, newReleaseYear, newPlatform, nrOf);
+			this.ItemH.addItem(newTitle, newPriceGroup, newGenre, newReleaseYear, newPlatform, nrOf);
 		}
 	}
 	// CHANGE ITEM
 	private void changeItem(String itemToChange)
 	{
-		Item newItem = rentalSystem.getItemHandler().getItem(itemToChange);
+		Item newItem = this.ItemH.getItem(itemToChange);
 		
 		if(newItem instanceof Video)
 		{
@@ -270,7 +268,7 @@ public class GUIItem extends JFrame
 	// EDIT ITEM
 	private void editItem(String itemToEdit)
 	{
-		Item newItem = rentalSystem.getItemHandler().getItem(itemToEdit);
+		Item newItem = this.ItemH.getItem(itemToEdit);
 		
 		String newTitle = newItem.getTitle();
 		int priceGroupPos = -1;
@@ -502,8 +500,6 @@ public class GUIItem extends JFrame
 		this.selectedItem = new String("");
 		
 		this.output = new JList<String>();
-
-		this.rentalSystem = new RentalSystem();
 	}
 	// CONFIGURE FRAME
 	private void configureFrame()
@@ -579,19 +575,14 @@ public class GUIItem extends JFrame
 		this.contentPane.add(this.output);
 	}
 	// GUI CONSTRUCTOR
-	public GUIItem ()
+	public GUIItem (ItemHandler ItemH)
 	{
 		super();
+		this.ItemH = ItemH;
 		initiateInstanceVariables();
 		configureFrame();
 		buildLeftPanel();
 		addListToTheRight();
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
-	// MAIN
-//	public static void main(String[] args) 
-//	{
-//		ItemHandlerGUI gui = new ItemHandlerGUI();
-//		gui.setVisible(true);
-//	}
 }
