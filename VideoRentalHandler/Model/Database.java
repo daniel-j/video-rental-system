@@ -13,6 +13,8 @@ public class Database implements Serializable
 	private static final long	serialVersionUID	= 1L;
 	private Vector<Item> items;
 	private Vector<Customer> customers;
+	private int idCustomer;
+	private int idItem;
 	/**
 	 * Constructor
 	 */
@@ -22,6 +24,22 @@ public class Database implements Serializable
 		this.customers = new Vector<Customer>();
 	}
 	
+	public int getIdCustomer() {
+		return idCustomer;
+	}
+
+	public void setIdCustomer(int idCustomer) {
+		this.idCustomer = idCustomer;
+	}
+
+	public int getIdItem() {
+		return idItem;
+	}
+
+	public void setIdItem(int idItem) {
+		this.idItem = idItem;
+	}
+
 	/**
 	 * Add item to "database"
 	 * @param item		Item to be saved

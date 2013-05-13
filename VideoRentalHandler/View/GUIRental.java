@@ -6,9 +6,11 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -17,9 +19,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
+import Model.RentalHandler;
 import Model.CustomerPackage.*;
 import Model.ItemPackage.*;
-
 //Import what this class use
 
 public class GUIRental extends JFrame
@@ -29,14 +31,13 @@ public class GUIRental extends JFrame
 	
 	private JTextField nameField		 = null;
 	private JTextField daysField		 = null;
-	private JTextField itemField 		 = null;
+	private JComboBox<String> itembox = null;
 	private JTextField priceField		 = null;
 	private JList<String> rentedList 	 = null;
 	private JList<String> newRentList 	 = null;
 	
-	private CustomerHandler CustomerHandlerReference;
-	private ItemHandler ItemHandlerReference;
-	
+	private RentalHandler RentalH;
+	private Vector<String> NewRentingOrder;
 	private class ButtonListener implements ActionListener
 	{
 		@Override
@@ -66,15 +67,17 @@ public class GUIRental extends JFrame
 	
 	private void add()
 	{
-		if(this.nameField.getText().equals("") || this.daysField.getText().equals("")
-				|| this.itemField.getText().equals(""))
+		if(this.nameField.getText().equals("") || this.daysField.getText().equals("") || this.itembox.getSelectedIndex() == 0)
 		{
 			JOptionPane.showMessageDialog(null, "You can't have empty fields!", "ERROR",
 				    JOptionPane.ERROR_MESSAGE);
 		}
 		else
 		{
-			
+			//Inte klar har inte GUICustomer så kan inte skapa en kund
+			this.RentalH.rentToCustomer(this.nameField.getText(), (String)this.itembox.getModel().getSelectedItem(), Integer.parseInt(this.daysField.getText()));
+			this.NewRentingOrder.add((String)this.itembox.getSelectedItem());
+			this.newRentList.setListData(this.NewRentingOrder);
 		}
 		
 	}
@@ -88,16 +91,15 @@ public class GUIRental extends JFrame
 		}
 		else
 		{
-			
+			this.RentalH.Rent(this.nameField.getText());
 		}
 	}
 	
-	public GUIRental(CustomerHandler CustomerH, ItemHandler ItemH)
+	public GUIRental(RentalHandler RentalH)
 	{
 		super();
 		
-		this.ItemHandlerReference = ItemH;
-		this.CustomerHandlerReference = CustomerH;
+		this.RentalH = RentalH;
 		
 		initiateInstanceVariables();
 		buildLeftPanel();
@@ -122,12 +124,13 @@ public class GUIRental extends JFrame
 	 */
 	private void initiateInstanceVariables()
 	{
+		this.NewRentingOrder = new Vector<String>();
 		this.contentPane = this.getContentPane();
 		this.contentPane.setLayout(new GridLayout(1, 2));
 		
 		this.nameField = new JTextField();
 		this.daysField = new JTextField();
-		this.itemField = new JTextField();
+		this.itembox = new JComboBox<String>();
 		this.priceField = new JTextField();
 		this.rentedList = new JList<String>();
 		this.newRentList = new JList<String>();
@@ -195,10 +198,15 @@ public class GUIRental extends JFrame
 		
 		this.daysField.setLocation(100, 50);
 		this.daysField.setSize(150, 25);
-		
-		this.itemField.setLocation(100, 75);
-		this.itemField.setSize(150, 25);
-		
+		this.itembox.addItem("Choose item");
+		for(Item item : this.RentalH.getItemList()){
+			if(!item.isStatus()){
+				this.itembox.addItem(item.getTitle());
+			}
+		}
+		this.itembox.setLocation(100, 75);
+		dim = this.itembox.getPreferredSize();
+		this.itembox.setSize(dim);
 		this.priceField.setLocation(100, 100);
 		this.priceField.setSize(150, 25);
 		this.priceField.setEditable(false);
@@ -225,7 +233,7 @@ public class GUIRental extends JFrame
 		panel.add(label4);
 		panel.add(this.nameField);
 		panel.add(this.daysField);
-		panel.add(this.itemField);
+		panel.add(this.itembox);
 		panel.add(this.priceField);
 		panel.add(button1);
 		panel.add(button2);

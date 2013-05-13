@@ -68,6 +68,9 @@ public class RentalHandler
 		Customer CurrentCustomer = this.CustomerH.getCustomer(CustomerName);
 		return CurrentCustomer;
 	}
+	public Vector<Item> getItemList(){
+		return this.ItemH.getListOfItems();
+	}
 	
 	public boolean rentToCustomer(String CustomerName, String ItemName, int nrOfDays)
 	{

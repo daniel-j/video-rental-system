@@ -21,22 +21,34 @@ public class ItemHandler implements Serializable
 		this.priceGroup.add((double) 150);
 		this.id = 1;
 	}
-	
-	
+    	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public boolean addItem(int video, String title, int priceGroup, String genre, int releaseYear, String medium, int inStock)
 	{
 		boolean added = false;
+		for(int i = 0; i<inStock; i++){
 		this.arrayOfItems.add(new Video(title, priceGroup, genre, releaseYear, medium, this.id, inStock));
-		added = true;
 		this.id++;
+		System.out.println(this.id);
+		}
+		added = true;
 		return added;
 	}
 	public boolean addItem(String title, int priceGroup, String genre, int releaseYear, String platform, int inStock)
 	{
 		boolean added = false;
-		this.arrayOfItems.add(new Game(title, priceGroup, genre, releaseYear, platform, this.id, inStock));
+		for(int i = 0; i<inStock; i++){
+			this.arrayOfItems.add(new Game(title, priceGroup, genre, releaseYear, platform, this.id, inStock));
+			this.id++;
+		}
 		added = true;
-		this.id++;
 		return added;
 	}
 	public boolean editItem(int itemToEdit, String title, int id, int priceGroup, String genre, int releaseYear, String platform, String medium)

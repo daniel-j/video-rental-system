@@ -9,6 +9,7 @@ import Model.ItemPackage.Item;
 
 public class CustomerHandler
 {	
+	private int id;
 	private Vector<Customer> customers;
 	
 	/**
@@ -17,8 +18,14 @@ public class CustomerHandler
 	public CustomerHandler()
 	{
 		this.customers = new Vector<Customer>();
+		this.id = 0;
 	}
-	
+	public int getId(){
+		return this.id;
+	}
+	public void setId(int id){
+		this.id = id;
+	}
 	/**
 	 * Add customer to system
 	 * @param name			Name of customer
@@ -29,9 +36,18 @@ public class CustomerHandler
 	 */
 	public boolean addCustomer(String name, String ssn, String address, String preference)
 	{
-		this.customers.add(new Customer(name, ssn, address, preference));
+		this.customers.add(new Customer(name, ssn, address, preference,this.id++));
 		
 		return true;
+	}
+	public boolean Exist(String name){
+		boolean found = false;
+		for(int i = 0; i<this.customers.size() && found != true; i++){
+			if(this.customers.elementAt(i).getName().equals(name)){
+				found = true;
+			}
+		}
+		return found;
 	}
 	
 	/**

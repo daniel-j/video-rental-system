@@ -9,7 +9,7 @@ import Model.ItemPackage.*;
 @SuppressWarnings("unused")
 public class Customer implements Serializable
 {
-	private static int id = 0;
+	private int id;
 	private String name;
 	private String ssn;
 	private Vector<Item> rentedItems;
@@ -23,7 +23,7 @@ public class Customer implements Serializable
 	public Customer() 
 	{
 		super();
-		Customer.id++;
+		this.id = 0;
 		this.name = "";
 		this.ssn = "";
 		this.rentedItems = new Vector<Item>();
@@ -39,10 +39,10 @@ public class Customer implements Serializable
 	 * @param address		Address of customer
 	 * @param preference	Preference of customer
 	 */
-	public Customer(String name, String ssn, String address, String preference) 
+	public Customer(String name, String ssn, String address, String preference, int id) 
 	{
 		super();
-		Customer.id++;
+		this.id = id;
 		this.name = name;
 		this.ssn = ssn;
 		this.rentedItems = new Vector<Item>();

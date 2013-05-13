@@ -130,9 +130,8 @@ public class GUISystem extends JFrame
 
 	private void enterRental() 
 	{
-		ItemHandler ItemH = this.MainSystemReference.getItemHandler();
-		CustomerHandler CustomerH = this.MainSystemReference.getCustomerHandler();
-		this.guiRental = new GUIRental(CustomerH,ItemH);
+		RentalHandler RentalH = this.MainSystemReference.getRentalHandler();
+		this.guiRental = new GUIRental(RentalH);
 	    //guiRental.setVisible(true);
 	    
 	}

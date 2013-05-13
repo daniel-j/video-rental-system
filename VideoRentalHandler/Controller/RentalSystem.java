@@ -93,7 +93,8 @@ public class RentalSystem
 		boolean save = false;
 		this.database.addItemList(this.ItemH.getListOfItems());
 		this.database.addCustomerList(this.CustomerH.getListOfCustomers());
-		
+		this.database.setIdItem(this.ItemH.getId());
+		this.database.setIdCustomer(this.CustomerH.getId());
 		try
 		{
 			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("database.dat"));
@@ -124,6 +125,8 @@ public class RentalSystem
 			this.database = (Database) obj;
 			this.CustomerH.LoadedFromDb(this.database.getCustomerList());			
 			this.ItemH.LoadedFromDb(this.database.getItemList());
+			this.ItemH.setId(this.database.getIdItem());
+			this.CustomerH.setId(this.database.getIdCustomer());
 			in.close();
 		}
 		catch (ClassNotFoundException | IOException e)
