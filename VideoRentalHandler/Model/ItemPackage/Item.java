@@ -1,8 +1,9 @@
 package Model.ItemPackage;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public abstract class Item 
+public abstract class Item implements Serializable
 {
 	private String title;
 	private int Id = 0;

@@ -115,5 +115,8 @@ public class CustomerHandler
 	{
 		return this.customers;
 	}
+	public void LoadedFromDb(Vector<Customer> Customers){
+		this.customers = Customers;
+	}
 	
 }

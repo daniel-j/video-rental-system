@@ -4,6 +4,7 @@ package Model;
 //Import what this class use
 import Model.CustomerPackage.*;
 import Model.ItemPackage.*;
+
 import java.io.Serializable;
 import java.util.Vector;
 
@@ -12,7 +13,6 @@ public class Database implements Serializable
 	private static final long	serialVersionUID	= 1L;
 	private Vector<Item> items;
 	private Vector<Customer> customers;
-	
 	/**
 	 * Constructor
 	 */
@@ -63,9 +63,9 @@ public class Database implements Serializable
 	 * @param index		Index of item
 	 * @return			Item
 	 */
-	public Item getItem(int index)
+	public Vector<Item> getItemList()
 	{
-		return this.items.get(index);
+		return this.items;
 	}
 	
 	/**
@@ -73,8 +73,8 @@ public class Database implements Serializable
 	 * @param index		Index of customer
 	 * @return			Customer
 	 */
-	public Customer getCustomer(int index)
+	public Vector<Customer> getCustomerList()
 	{
-		return this.customers.get(index);
+		return this.customers;
 	}
 }

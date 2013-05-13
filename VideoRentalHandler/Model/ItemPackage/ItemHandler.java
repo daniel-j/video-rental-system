@@ -194,7 +194,7 @@ public class ItemHandler implements Serializable
 			{
 				if(item instanceof Video)
 				{
-					str[counter] = item.getTitle();
+					str[counter++] = item.getTitle();
 				}
 			}
 		}
@@ -216,7 +216,7 @@ public class ItemHandler implements Serializable
 			{
 				if(item instanceof Game)
 				{
-					str[counter] = item.getTitle();
+					str[counter++] = item.getTitle();
 				}
 			}
 		}
@@ -280,5 +280,8 @@ public class ItemHandler implements Serializable
 	public Double getPrice(int pg)
 	{
 		return this.priceGroup.get(pg-1);
+	}
+	public void LoadedFromDb(Vector<Item> items){
+		this.arrayOfItems = items;
 	}
 }

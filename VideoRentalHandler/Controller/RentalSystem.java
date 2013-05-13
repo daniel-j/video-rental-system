@@ -36,8 +36,7 @@ public class RentalSystem
 		//---------------------------------------
 		
 		//Load
-		
-		//this.loadResult();
+		this.loadResult();
 	}
 	
 	/**
@@ -92,7 +91,7 @@ public class RentalSystem
 	public boolean save() throws ClassNotFoundException
 	{
 		boolean save = false;
-		this.database.addItemList(null);
+		this.database.addItemList(this.ItemH.getListOfItems());
 		this.database.addCustomerList(this.CustomerH.getListOfCustomers());
 		
 		try
@@ -123,7 +122,8 @@ public class RentalSystem
 			
 			Object obj = in.readObject();
 			this.database = (Database) obj;
-			
+			this.CustomerH.LoadedFromDb(this.database.getCustomerList());			
+			this.ItemH.LoadedFromDb(this.database.getItemList());
 			in.close();
 		}
 		catch (ClassNotFoundException | IOException e)

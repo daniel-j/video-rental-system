@@ -1,12 +1,13 @@
 //In this package
 package Model.CustomerPackage;
+import java.io.Serializable;
 import java.util.Vector;
 
 //Import what this class use
 import Model.ItemPackage.*;
 
 @SuppressWarnings("unused")
-public class Customer 
+public class Customer implements Serializable
 {
 	private static int id = 0;
 	private String name;

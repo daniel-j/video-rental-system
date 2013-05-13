@@ -88,14 +88,12 @@ public class GUISystem extends JFrame
 	{
     	    JOptionPane.showMessageDialog(null, "Exit the system");
     	    //Save
-    	    /*
     	    try {
 				this.MainSystemReference.save();
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			*/
     	    System.exit(0);
 	}
 
