@@ -1,6 +1,10 @@
 //In this package
 package View;
 
+import Model.SearchHandler;
+
+import Controller.RentalSystem;
+
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -21,12 +25,24 @@ public class GUISystem extends JFrame
      */
     private static final long serialVersionUID = 1L;
     private Container contentPane;
+   
+    //
     private GUICustomer guiCustomer;
     private GUIItem guiItem;
     private GUINewsletter guiNewsLetter;
     private GUIRental guiRental;
     private GUISearch guiSearch;
     
+    private RentalSystem MainSystemReference;
+    
+    public GUISystem(RentalSystem MainSystem)
+	{
+	    super();
+		initiateInstanceVariables();
+		configureFrame();
+		buildPanel();
+		this.MainSystemReference = MainSystem;
+	}
     
     public class ButtonListener implements ActionListener
 	{
@@ -76,7 +92,9 @@ public class GUISystem extends JFrame
 
 	private void enterSearch() 
 	{
-	    guiSearch.setVisible(true);
+		SearchHandler SearchH = this.MainSystemReference.getSerchHandler();
+		this.guiSearch = new GUISearch(SearchH);
+		guiSearch.setVisible(true);
 	    
 	}
 
@@ -98,13 +116,6 @@ public class GUISystem extends JFrame
 	    
 	}
 	
-	public GUISystem()
-	{
-	    	super();
-		initiateInstanceVariables();
-		configureFrame();
-		buildPanel();
-	}
 	
 	private void initiateInstanceVariables()
 	{

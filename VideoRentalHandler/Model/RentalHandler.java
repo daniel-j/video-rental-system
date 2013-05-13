@@ -69,11 +69,12 @@ public class RentalHandler
 		return CurrentCustomer;
 	}
 	
-	public boolean rentToCustomer(String CustomerName, String ItemName)
+	public boolean rentToCustomer(String CustomerName, String ItemName, int nrOfDays)
 	{
 		//Adds the item to the customers
 		Customer CurrentCustomer = this.getCustomer(CustomerName);
 		Item CurrentItem = this.getItem(ItemName);
+		CurrentItem.setRentalExpireDate(nrOfDays);
 		CurrentCustomer.addItem(CurrentItem);
 		return true;
 	}

@@ -2,7 +2,7 @@
 package View;
 
 //Import what this class use
-import Model.*;
+import Model.SearchHandler;
 
 import java.awt.Container;
 import java.awt.Dimension;
@@ -28,7 +28,7 @@ public class GUISearch extends JFrame
 	private Container contentPane;
 	private JTextField searchField;
 	private JList<String> resultList;
-	private RentalSystem rentalSystem;
+	private SearchHandler SearchH;
 	
 	public class ButtonListener implements ActionListener
 	{
@@ -64,9 +64,9 @@ public class GUISearch extends JFrame
 			{
 				String searchString = this.searchField.getText();
 				
-				if(this.RentalSystem.SearchHandler.SearchItem(searchString) != null)
+				if(this.SearchH.SearchItem(searchString) != null)
 				{
-					this.resultList.setListData(this.RentalSystem.SearchHandler.SearchItem(searchString));
+					this.resultList.setListData(this.SearchH.SearchItem(searchString));
 				}
 				else
 				{
@@ -87,11 +87,11 @@ public class GUISearch extends JFrame
 			if(this.searchField != null)
 			{
 				String searchString = this.searchField.getText();
-				RentalSystem.SearchHandler.SearchCostumer(searchString);
+				this.SearchH.SearchCostumer(searchString);
 				
-				if(this.RentalSystem.SearchHandler.SearchItem(searchString) != null)
+				if(this.SearchH.SearchItem(searchString) != null)
 				{
-					this.resultList.setListData(this.RentalSystem.SearchHandler.SearchCostumer(searchString));
+					this.resultList.setListData(this.SearchH.SearchCostumer(searchString));
 				}
 				else
 				{
@@ -107,9 +107,10 @@ public class GUISearch extends JFrame
 			
 		}
 		
-		public GUISearch() 
+		public GUISearch(SearchHandler SearchHandler) 
 		{
 			super();
+			this.SearchH = SearchHandler;
 			initiateInstanceVariables();
 			configureFrame();
 			buildLeftPanel();
@@ -123,7 +124,6 @@ public class GUISearch extends JFrame
 			this.contentPane.setLayout(new GridLayout(1, 2));
 			this.searchField = new JTextField();
 			this.resultList = new JList<String>();
-			this.RentalSystem = new RentalSystem();
 		}
 		
 		private void configureFrame()

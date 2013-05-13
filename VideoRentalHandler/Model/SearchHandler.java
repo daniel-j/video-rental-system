@@ -1,11 +1,10 @@
 //In this package
 package Model;
+import Model.CustomerPackage.*;
+import Model.ItemPackage.*;
 
 import java.util.Vector;
 
-import Controller.RentalSystem;
-import Model.CustomerPackage.Customer;
-import Model.ItemPackage.Item;
 
 //Import what this class use
 
@@ -13,62 +12,86 @@ public class SearchHandler
 {
 	private Vector <Customer> customers;
 	private Vector <Item> items;
-	private RentalSystem rs;
 	
-	public SearchHandler()
-	{
-	    rs = new RentalSystem(); 
+	public SearchHandler(ItemHandler ItemH, CustomerHandler CustomerH)
+	{	    
+	    //Vectors
 	    this.customers = new Vector<Customer>();
 	    this.items = new Vector<Item>();
 	    
-	    this.customers = rs.getCustomerHandler().getListOfCustomers();
-	    this.items = rs.getItemHandler().getListOfItems();
+	    this.customers = CustomerH.getListOfCustomers();
+	    this.items = ItemH.getListOfItems();
 	   
 	}
-	public String SearchCostumer(String searchString)
+	public String[] SearchCostumer(String searchString)
 	{
 		String returnString = null;
-		
+		int size = this.customers.size();
+		int counter = 0;
+		String Result[] = new String[size];
 		for (Customer cust : customers) 
 		{
 		   if(cust.getName().equals(searchString))
 		   {
 		       returnString = cust.toString();
+		       Result[counter] = returnString;
+		       counter++;
 		   }
 		   else if(cust.getId() == (Integer.parseInt(searchString)))
 		   {
-			returnString = cust.toString();
+				returnString = cust.toString();
+				Result[counter] = returnString;
+				counter++;
 		   }
 		   else if(cust.getSsn().equals(searchString))
 		   {
-			returnString = cust.toString();
+				returnString = cust.toString();
+				Result[counter] = returnString;
+				counter++;
 		   }
 		   else if(cust.getAddress().equals(searchString))
 		   {
-			returnString = cust.toString();
+				returnString = cust.toString();
+				Result[counter] = returnString;
+				counter++;
 		   }
 		}
-		
-		return returnString;
+		int newSize = counter;
+		String returnArr[] = new String[newSize];
+		for(int i = 0; i<newSize; i++){
+			returnArr[i] = Result[i];
+		}
+		return returnArr;
 	}
 	
-	public String SearchItem(String searchString)
+	public String[] SearchItem(String searchString)
 	{
 		String returnString = null;
+		int size = this.items.size();
+		int counter = 0;
+		String Result[] = new String[size];
 		
 		for(Item itm : items)
 		{
 			if(itm.getTitle().equals(searchString))
 			{
 			    returnString = itm.toString();
+			    Result[counter] = returnString;
+			    counter++;
 			}
 			else if(itm.getId() == (Integer.parseInt(searchString)))
 			{
 			    returnString = itm.toString();
+			    Result[counter] = returnString;
+			    counter++;
 			}
 		}
-		
-		return returnString;
+		int newSize = counter;
+		String returnArr[] = new String[newSize];
+		for(int i = 0; i<newSize; i++){
+			returnArr[i] = Result[i];
+		}
+		return returnArr;
 	}
 	
 }
