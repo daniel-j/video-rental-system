@@ -135,6 +135,7 @@ public class GUISystem extends JFrame
 	
 	private void configureFrame()
 	{
+		
 		this.setSize(400, 400);
 		this.setTitle("Rental System :: Video Rental System 1.0");
 		this.setLocationRelativeTo(null);
