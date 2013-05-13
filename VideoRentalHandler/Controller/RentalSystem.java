@@ -18,9 +18,9 @@ public class RentalSystem
 	private ItemHandler 		ItemH;
 	private NewsletterHandler 	NewsletterH;
 	private RentalHandler 		RentalH;
-	private	SearchHandler 		SearchH;
+	//private	SearchHandler 		SearchH;
 	private Database 			database;
-	private GUISystem			SystemGui;
+	//private GUISystem			SystemGui;
 	
 	//Construct
 	public RentalSystem()
@@ -29,10 +29,10 @@ public class RentalSystem
 		this.CustomerH 		= new CustomerHandler();
 		this.ItemH 			= new ItemHandler();
 		this.NewsletterH	= new NewsletterHandler();
-		this.RentalH 		= new RentalHandler();
-		this.SearchH 		= new SearchHandler();
+		//this.SearchH 		= new SearchHandler();
+		this.RentalH 		= new RentalHandler(this.ItemH, this.CustomerH);
 		this.database 		= new Database();
-		this.SystemGui		= new GUISystem();
+		//this.SystemGui		= new GUISystem();
 		//---------------------------------------
 	}
 	
@@ -76,10 +76,10 @@ public class RentalSystem
 	 * Get SearchHandler
 	 * @return		SearchHandler
 	 */
-	public SearchHandler getSerchHandler()
+	/*public SearchHandler getSerchHandler()
 	{
 		return this.SearchH;
-	}
+	}*/
 	
 	/**
 	 * Save to database
