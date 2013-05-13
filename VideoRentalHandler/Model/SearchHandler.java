@@ -11,9 +11,20 @@ import Model.ItemPackage.Item;
 
 public class SearchHandler
 {
-	private Vector <Customer> customers = RentalSystem.getCustomerHandler().getListOfCustomers();
-	private Vector <Item> items = RentalSystem.getItemHandler().getListOfItems();
+	private Vector <Customer> customers;
+	private Vector <Item> items;
+	private RentalSystem rs;
 	
+	public SearchHandler()
+	{
+	    rs = new RentalSystem(); 
+	    this.customers = new Vector<Customer>();
+	    this.items = new Vector<Item>();
+	    
+	    this.customers = rs.getCustomerHandler().getListOfCustomers();
+	    this.items = rs.getItemHandler().getListOfItems();
+	   
+	}
 	public String SearchCostumer(String searchString)
 	{
 		String returnString = null;
@@ -24,7 +35,7 @@ public class SearchHandler
 		   {
 		       returnString = cust.toString();
 		   }
-		   else if(cust.getId().equals(searchString))
+		   else if(cust.getId() == (Integer.parseInt(searchString)))
 		   {
 			returnString = cust.toString();
 		   }
@@ -32,12 +43,11 @@ public class SearchHandler
 		   {
 			returnString = cust.toString();
 		   }
-		   else if(cost.getAddress().equals(searchString))
+		   else if(cust.getAddress().equals(searchString))
 		   {
 			returnString = cust.toString();
 		   }
 		}
-		
 		
 		return returnString;
 	}
@@ -52,7 +62,7 @@ public class SearchHandler
 			{
 			    returnString = itm.toString();
 			}
-			else if(itm.getId().equals(searchString))
+			else if(itm.getId() == (Integer.parseInt(searchString)))
 			{
 			    returnString = itm.toString();
 			}
