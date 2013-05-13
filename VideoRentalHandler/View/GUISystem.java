@@ -117,8 +117,8 @@ public class GUISystem extends JFrame
 
 	private void enterItems() 
 	{
-		
-		this.guiItem = new GUIItem();
+		ItemHandler ItemH = this.MainSystemReference.getItemHandler();
+		this.guiItem = new GUIItem(ItemH);
 	    guiItem.setVisible(true);
 	    
 	}
