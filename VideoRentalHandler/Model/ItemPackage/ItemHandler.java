@@ -277,4 +277,8 @@ public class ItemHandler implements Serializable
 		}
 		return pgs;
 	}
+	public Double getPrice(int pg)
+	{
+		return this.priceGroup.get(pg-1);
+	}
 }
