@@ -15,7 +15,7 @@ public abstract class Item implements Serializable
 	
 	public Item() 
 	{
-		super();
+	    super();
 	}
 	
 	public Item(String title, int priceGroup, int id, int inStock)
@@ -86,7 +86,5 @@ public abstract class Item implements Serializable
 		return this.inStock;
 	}
 	
-
-
 
 }
