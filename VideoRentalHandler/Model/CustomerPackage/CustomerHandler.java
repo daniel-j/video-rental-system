@@ -68,9 +68,10 @@ public class CustomerHandler
 	 * @param id			ID of customer
 	 * @return				Customer
 	 */
-	public Customer getCustomer(int id)
+	public Customer getCustomer(String name)
 	{
-		return this.customers.elementAt(id);
+		int index = this.customers.indexOf(name);
+		return this.customers.elementAt(index);
 	}
 	
 	/**

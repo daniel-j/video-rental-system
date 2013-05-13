@@ -3,23 +3,29 @@ package Model;
 
 import java.util.Vector;
 
-import Model.CustomerPackage.Customer;
-import Model.ItemPackage.Item;
+import Model.CustomerPackage.*;
+import Model.ItemPackage.*;
 
 //Import what this class use
 
 
 public class RentalHandler
 {
-	//Constructor
-	public RentalHandler()
-	{
+	private CustomerHandler CustomerH;
+	private ItemHandler ItemH;
+	private double TotalPrice;
 	
+	public RentalHandler(ItemHandler ItemHa, CustomerHandler CustomerHa)
+	{
+		this.CustomerH = CustomerHa;
+		this.ItemH = ItemHa;
+		this.TotalPrice = 0;
 	}
 	
-	public double calculatePrice()
+	public double calculatePrice(double IPrice)
 	{
-		return 0.0;
+		this.TotalPrice += IPrice;
+		return this.TotalPrice;
 	}
 	
 	public Vector<Item> listRented()
@@ -27,9 +33,20 @@ public class RentalHandler
 		return null;
 	}
 	
-	public boolean specialOffers()
+	//GuiRental Call function before calculatePrice
+	//if return true, calculate price wont be called 
+	//else add price to this rental
+	public boolean specialOffers(String CustomerName)
 	{
-		return true;
+		Customer CurrentCustomer = this.CustomerH.getCustomer(CustomerName);
+		int nrOfRented = CurrentCustomer.getTotalRented();
+		if(nrOfRented >= 10){
+			return true;
+		}
+		else{
+			return false;
+		}
+		
 	}
 	
 	public void setItemStatus(int id, boolean rented)

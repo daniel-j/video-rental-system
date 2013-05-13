@@ -14,6 +14,7 @@ public class Customer
 	private Vector<Item> rentedItems;
 	private String address;
 	private String preference;
+	private int TotalRented;
 	
 	/**
 	 * Constructor
@@ -27,6 +28,7 @@ public class Customer
 		this.rentedItems = new Vector<Item>();
 		this.address = "";
 		this.preference = "";
+		this.TotalRented = 0;
 	}
 
 	/**
@@ -45,6 +47,7 @@ public class Customer
 		this.rentedItems = new Vector<Item>();
 		this.address = address;
 		this.preference = preference;
+		this.TotalRented = 0;
 	}
 	
 	/**
@@ -117,13 +120,21 @@ public class Customer
 	{
 		return this.preference;
 	}
-
+	public int getTotalRented(){
+		return this.TotalRented;
+	}
 	/**
 	 * Add item to customer
 	 * @param item		Item to rented to customer
 	 */
 	public void addItem(Item item)
 	{
+		if(this.TotalRented > 10){
+			this.TotalRented = 0;
+		}
+		else{
+			this.TotalRented++;
+		}
 		this.rentedItems.add(item);
 	}
 }
