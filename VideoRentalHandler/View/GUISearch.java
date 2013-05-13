@@ -54,7 +54,7 @@ public class GUISearch extends JFrame
 
 		private void clearSearchField() 
 		{
-		    // Clear the search fields
+		    // Clears the search fields
 		    this.searchField.setText("");
 			
 		}
