@@ -2,52 +2,52 @@ package Model.ItemPackage;
 
 public class Game extends Item
 {
-private String genre;
-private int releaseYear;
-private String platform;
+    private String genre;
+    private int releaseYear;
+    private String platform;
 
 
 public Game()
 {
-super();
+    super();
 }
 
 public Game(String title, int priceGroup, String genre, int releaseYear, String platform, int id, int inStock) 
 {
-super(title, priceGroup, id, inStock);
-this.genre = genre;
-this.releaseYear = releaseYear;
-this.platform = platform;
+    super(title, priceGroup, id, inStock);
+    this.genre = genre;
+    this.releaseYear = releaseYear;
+    this.platform = platform;
 }
 
 public String getGenre() 
 {
-return genre;
+    return genre;
 }
 
 public void setGenre(String genre) 
 {
-this.genre = genre;
+    this.genre = genre;
 }
 
 public int getReleaseYear() 
 {
-return releaseYear;
+    return releaseYear;
 }
 
 public void setReleaseYear(int releaseYear) 
 {
-this.releaseYear = releaseYear;
+    this.releaseYear = releaseYear;
 }
 
 public String getPlatform() 
 {
-return platform;
+    return platform;
 }
 
 public void setPlatform(String platform) 
 {
-this.platform = platform;
+    this.platform = platform;
 }
 
 @Override
