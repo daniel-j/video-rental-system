@@ -130,6 +130,6 @@ public class RentalSystem
 	
 	public static void main(String[] args)
 	{
-		GUINewsletter MainSystem = new GUINewsletter();
+		RentalSystem MainSystem = new RentalSystem();
 	}
 }

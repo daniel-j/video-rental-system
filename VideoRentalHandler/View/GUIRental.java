@@ -25,7 +25,6 @@ public class GUIRental extends JFrame
 {
 	private static final long	serialVersionUID	= 1L;
 	private Container contentPane;
-	private RentalSystem rentalSystem = null;
 	
 	private JTextField nameField		 = null;
 	private JTextField daysField		 = null;
@@ -119,7 +118,6 @@ public class GUIRental extends JFrame
 	{
 		this.contentPane = this.getContentPane();
 		this.contentPane.setLayout(new GridLayout(1, 2));
-		this.rentalSystem = new RentalSystem();
 		
 		this.nameField = new JTextField();
 		this.daysField = new JTextField();
