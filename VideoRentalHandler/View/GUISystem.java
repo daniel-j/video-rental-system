@@ -2,6 +2,7 @@
 package View;
 
 import Model.SearchHandler;
+import Model.NewsletterPackage.NewsletterHandler;
 
 import Controller.RentalSystem;
 
@@ -122,9 +123,10 @@ public class GUISystem extends JFrame
 		
 		//Handlers
 		SearchHandler SearchH = this.MainSystemReference.getSerchHandler();
+		NewsletterHandler newsletterH = this.MainSystemReference.getNewsletterHandler();
 		
 		//GUI
-		this.guiNewsLetter = new GUINewsletter();
+		this.guiNewsLetter = new GUINewsletter(newsletterH);
 		this.guiSearch = new GUISearch(SearchH);
 		this.guiItem = new GUIItem();
 		this.guiCustomer = new GUICustomer();

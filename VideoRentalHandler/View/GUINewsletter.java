@@ -1,6 +1,6 @@
 //In this package
 package View;
-import Controller.RentalSystem;
+import Model.NewsletterPackage.NewsletterHandler;
 
 //Import what this class use
 
@@ -26,12 +26,13 @@ public class GUINewsletter extends JFrame
 {
 	private static final long	serialVersionUID	= 1L;
 	private Container contentPane;
-	private RentalSystem rentalSystem = null;
 	
 	private JTextField titleField 	  			 = null;
 	private JTextArea contentTextArea 			 = null;
 	private JComboBox<String> preferenceComboBox = null;
 	private JList<String> addressList 			 = null;
+	
+	private NewsletterHandler newsletterH 		 = null;
 
 	private class ButtonListener implements ActionListener
 	{
@@ -63,9 +64,9 @@ public class GUINewsletter extends JFrame
 		}
 		else
 		{
-			rentalSystem.getNewsletterHandler().setTitle(this.titleField.getText());
-			rentalSystem.getNewsletterHandler().setContent(this.contentTextArea.getText());
-			rentalSystem.getNewsletterHandler().send();
+			this.newsletterH.setTitle(this.titleField.getText());
+			this.newsletterH.setContent(this.contentTextArea.getText());
+			this.newsletterH.send();
 		}
 	}
 	
@@ -82,22 +83,24 @@ public class GUINewsletter extends JFrame
 		}
 		else
 		{
-			rentalSystem.getNewsletterHandler().setTitle(this.titleField.getText());
-			rentalSystem.getNewsletterHandler().setContent(this.contentTextArea.getText());
-			rentalSystem.getNewsletterHandler().send();
+			this.newsletterH.setTitle(this.titleField.getText());
+			newsletterH.setContent(this.contentTextArea.getText());
+			newsletterH.send();
 		}
 	}
 	
 	/**
 	 * Constructor
 	 */
-	public GUINewsletter()
+	public GUINewsletter(NewsletterHandler newsletterH)
 	{
 		super();
 		initiateInstanceVariables();
 		configureFrame();
 		buildLeftPanel();
 		buildRightPanel();
+		
+		this.newsletterH = newsletterH;
 	}
 	
 	/**
@@ -119,7 +122,6 @@ public class GUINewsletter extends JFrame
 	{
 		this.contentPane = this.getContentPane();
 		this.contentPane.setLayout(new GridLayout(1, 2));
-		this.rentalSystem = new RentalSystem();
 		
 		this.titleField = new JTextField();
 		this.contentTextArea = new JTextArea();
