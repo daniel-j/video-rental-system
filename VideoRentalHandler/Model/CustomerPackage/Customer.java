@@ -65,6 +65,42 @@ public class Customer
 	}
 	
 	/**
+	 * Get id of customer
+	 * @return		Id
+	 */
+	public int getId()
+	{
+		return id;
+	}
+
+	/**
+	 * Get name of customer
+	 * @return		Name
+	 */
+	public String getName()
+	{
+		return name;
+	}
+	
+	/**
+	 * Get SSN of customer
+	 * @return		SSN
+	 */
+	public String getSsn()
+	{
+		return ssn;
+	}
+	
+	/**
+	 * Get vector of items for customer
+	 * @return		RentedItems
+	 */
+	public Vector<Item> getRentedItems()
+	{
+		return rentedItems;
+	}
+	
+	/**
 	 * Get address of customer
 	 * @return		Address
 	 */
@@ -81,7 +117,7 @@ public class Customer
 	{
 		return this.preference;
 	}
-	
+
 	/**
 	 * Add item to customer
 	 * @param item		Item to rented to customer
