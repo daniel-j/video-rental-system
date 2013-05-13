@@ -17,7 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import Controller.RentalSystem;
+import Model.CustomerPackage.*;
+import Model.ItemPackage.*;
 
 //Import what this class use
 
@@ -33,6 +34,8 @@ public class GUIRental extends JFrame
 	private JList<String> rentedList 	 = null;
 	private JList<String> newRentList 	 = null;
 	
+	private CustomerHandler CustomerHandlerReference;
+	private ItemHandler ItemHandlerReference;
 	
 	private class ButtonListener implements ActionListener
 	{
@@ -89,11 +92,14 @@ public class GUIRental extends JFrame
 		}
 	}
 	
-	public GUIRental()
+	public GUIRental(CustomerHandler CustomerH, ItemHandler ItemH)
 	{
 		super();
-		initiateInstanceVariables();
 		
+		this.ItemHandlerReference = ItemH;
+		this.CustomerHandlerReference = CustomerH;
+		
+		initiateInstanceVariables();
 		buildLeftPanel();
 		buildRightPanel();
 		configureFrame();
@@ -105,7 +111,7 @@ public class GUIRental extends JFrame
 	private void configureFrame()
 	{
 		this.setSize(650, 350);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setTitle("Rental");
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);

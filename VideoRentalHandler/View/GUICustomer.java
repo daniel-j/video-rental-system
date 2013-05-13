@@ -5,5 +5,8 @@ package View;
 
 public class GUICustomer
 {
-
+	
+	
+	
+	
 }

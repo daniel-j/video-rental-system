@@ -2,7 +2,11 @@
 package View;
 
 import Model.SearchHandler;
-import Model.NewsletterPackage.NewsletterHandler;
+import Model.RentalHandler;
+import Model.CustomerPackage.*;
+import Model.NewsletterPackage.*;
+import Model.ItemPackage.*;
+
 
 import Controller.RentalSystem;
 
@@ -27,7 +31,7 @@ public class GUISystem extends JFrame
     private static final long serialVersionUID = 1L;
     private Container contentPane;
    
-    //
+    //GUIs
     private GUICustomer guiCustomer;
     private GUIItem guiItem;
     private GUINewsletter guiNewsLetter;
@@ -38,11 +42,12 @@ public class GUISystem extends JFrame
     
     public GUISystem(RentalSystem MainSystem)
 	{
-	    super();
-	    this.MainSystemReference = MainSystem;
+    	super();
+    	this.MainSystemReference = MainSystem;
 		initiateInstanceVariables();
 		configureFrame();
-		buildPanel();	
+		buildPanel();
+		this.setVisible(true);
 	}
     
     public class ButtonListener implements ActionListener
@@ -82,35 +87,54 @@ public class GUISystem extends JFrame
     	private void logout() 
 	{
     	    JOptionPane.showMessageDialog(null, "Exit the system");
+    	    //Save
+    	    /*
+    	    try {
+				this.MainSystemReference.save();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			*/
     	    System.exit(0);
 	}
 
 	private void enterNewsletter() 
 	{
+		NewsletterHandler NewsletterH = this.MainSystemReference.getNewsletterHandler();
+		this.guiNewsLetter = new GUINewsletter(NewsletterH);
 	    guiNewsLetter.setVisible(true);
 	    
 	}
 
 	private void enterSearch() 
 	{
+		SearchHandler SearchH = this.MainSystemReference.getSerchHandler();
+		this.guiSearch = new GUISearch(SearchH);
 		guiSearch.setVisible(true);
 	    
 	}
 
 	private void enterItems() 
 	{
+		
+		this.guiItem = new GUIItem();
 	    guiItem.setVisible(true);
 	    
 	}
 
 	private void enterCostumers() 
 	{
+		this.guiCustomer = new GUICustomer();
 	    //guiCustomer.setVisible(true);
 	    
 	}
 
 	private void enterRental() 
 	{
+		ItemHandler ItemH = this.MainSystemReference.getItemHandler();
+		CustomerHandler CustomerH = this.MainSystemReference.getCustomerHandler();
+		this.guiRental = new GUIRental(CustomerH,ItemH);
 	    //guiRental.setVisible(true);
 	    
 	}
@@ -120,27 +144,15 @@ public class GUISystem extends JFrame
 	{
 		this.contentPane = this.getContentPane();
 		this.contentPane.setLayout(new GridLayout(1, 2));
-		
-		//Handlers
-		SearchHandler SearchH = this.MainSystemReference.getSerchHandler();
-		NewsletterHandler newsletterH = this.MainSystemReference.getNewsletterHandler();
-		
-		//GUI
-		this.guiNewsLetter = new GUINewsletter(newsletterH);
-		this.guiSearch = new GUISearch(SearchH);
-		this.guiItem = new GUIItem();
-		this.guiCustomer = new GUICustomer();
-		this.guiRental = new GUIRental();
 	}
 	
 	private void configureFrame()
 	{
-		
 		this.setSize(400, 400);
 		this.setTitle("Rental System :: Video Rental System 1.0");
 		this.setLocationRelativeTo(null);
 		
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	}
 	
 	private void buildPanel()
@@ -176,5 +188,6 @@ public class GUISystem extends JFrame
 		}
 		
 		thePanel.add(buttonPanel);
+		this.contentPane.add(thePanel);
 	}
 }

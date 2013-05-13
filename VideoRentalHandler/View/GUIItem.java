@@ -586,7 +586,7 @@ public class GUIItem extends JFrame
 		configureFrame();
 		buildLeftPanel();
 		addListToTheRight();
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 	// MAIN
 //	public static void main(String[] args) 

@@ -109,7 +109,7 @@ public class GUINewsletter extends JFrame
 	private void configureFrame()
 	{
 		this.setSize(800, 400);
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setTitle("Newsletter");
 		this.setLocationRelativeTo(null);
 		this.setVisible(true);

@@ -132,7 +132,7 @@ public class GUISearch extends JFrame
 			this.setTitle("Search Handler :: Video Rental System 1.0");
 			this.setLocationRelativeTo(null);
 			
-			this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		}
 	
 		private void buildLeftPanel()

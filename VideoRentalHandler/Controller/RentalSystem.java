@@ -34,6 +34,10 @@ public class RentalSystem
 		this.database 		= new Database();
 		this.SystemGui		= new GUISystem(this);
 		//---------------------------------------
+		
+		//Load
+		
+		//this.loadResult();
 	}
 	
 	/**
@@ -130,6 +134,6 @@ public class RentalSystem
 	
 	public static void main(String[] args)
 	{
-		RentalSystem MainSystem = new RentalSystem();
+		GUILogin Login = new GUILogin();
 	}
 }

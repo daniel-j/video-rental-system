@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+import Controller.RentalSystem;
+
 
 public class GUILogin extends JFrame
 {
@@ -25,7 +27,7 @@ public class GUILogin extends JFrame
 	private Container contentPane;
 	private JTextField userNameField;
 	private JPasswordField passwordField;
-	private GUISystem guiSystem;
+	private boolean loggedIn;
 	
 	private class ButtonListener implements ActionListener
 	{
@@ -36,11 +38,11 @@ public class GUILogin extends JFrame
 			
 			if(buttonText.equals("Log in"))
 			{
-				if(logIn() == true)
+				logIn();
+				if(loggedIn == true)
 				{
 					JOptionPane.showMessageDialog(null, "You have entered the system!");
 					clearFields();
-					enterSystem();
 				}
 				else
 				{
@@ -59,10 +61,8 @@ public class GUILogin extends JFrame
 		
 	}
 	
-	private boolean logIn()
-	{
-		boolean loggedIn = false;
-		
+	public void logIn()
+	{		
 		String username = "user";
 		char[] pass = {'p', 'a', 's', 's', 'w', 'o', 'r', 'd'};
 		
@@ -72,22 +72,20 @@ public class GUILogin extends JFrame
 		if(userName.equals(username) && Arrays.equals(pass, password))
 		{
 			loggedIn = true;
+			this.setVisible(false);
+			RentalSystem MainSystem = new RentalSystem();
 		}
-		
-		return loggedIn;
 	}
-	
-	private void enterSystem()
-	{
-	    this.guiSystem.setVisible(true);
+	public boolean getLoggedIn(){
+		return this.loggedIn;
 	}
-	
 	public GUILogin() 
 	{
 		super();
 		initiateInstanceVariables();
 		configureFrame();
 		createPanel();	
+		this.setVisible(true);
 	}
 	
 	private void initiateInstanceVariables()
@@ -96,11 +94,12 @@ public class GUILogin extends JFrame
 		this.contentPane.setLayout(new GridLayout(1, 2));
 		this.userNameField = new JTextField();
 		this.passwordField = new JPasswordField();
+		this.loggedIn = false;
 	}
 	
 	private void configureFrame()
 	{
-		this.setSize(800, 400);
+		this.setSize(320, 300);
 		this.setTitle("Log In :: Video Rental System 1.0");
 		this.setLocationRelativeTo(null);
 		
@@ -141,7 +140,7 @@ public class GUILogin extends JFrame
 		JButton button = new JButton(buttonTxt[0]);
 		Dimension dim = button.getPreferredSize();
 		buttonPanel.setSize(3*dim.width + 8, 2 * dim.height + 5);
-		buttonPanel.setLocation(20,270);
+		buttonPanel.setLocation(20,190);
 		
 		// Add all buttons to button panel
 		for(String str: buttonTxt)
