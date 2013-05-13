@@ -14,12 +14,14 @@ public class RentalHandler
 	private CustomerHandler CustomerH;
 	private ItemHandler ItemH;
 	private double TotalPrice;
+	private Vector<Customer> CustomerWithRentedItems;
 	
 	public RentalHandler(ItemHandler ItemHa, CustomerHandler CustomerHa)
 	{
 		this.CustomerH = CustomerHa;
 		this.ItemH = ItemHa;
 		this.TotalPrice = 0;
+		this.CustomerWithRentedItems = new Vector<Customer>();
 	}
 	
 	public double calculatePrice(double IPrice)
@@ -28,9 +30,9 @@ public class RentalHandler
 		return this.TotalPrice;
 	}
 	
-	public Vector<Item> listRented()
+	public Vector<Customer> listRented()
 	{
-		return null;
+		return this.CustomerWithRentedItems;
 	}
 	
 	//GuiRental Call function before calculatePrice
@@ -38,7 +40,7 @@ public class RentalHandler
 	//else add price to this rental
 	public boolean specialOffers(String CustomerName)
 	{
-		Customer CurrentCustomer = this.CustomerH.getCustomer(CustomerName);
+		Customer CurrentCustomer = this.getCustomer(CustomerName);
 		int nrOfRented = CurrentCustomer.getTotalRented();
 		if(nrOfRented >= 10){
 			return true;
@@ -49,23 +51,37 @@ public class RentalHandler
 		
 	}
 	
-	public void setItemStatus(int id, boolean rented)
+	public void setItemStatus(String ItemName, boolean rented)
 	{
-		
+		Item CurrentItem = this.getItem(ItemName);
+		CurrentItem.setStatus(rented);
 	}
 	
-	public Item getItem(int id)
+	public Item getItem(String ItemName)
 	{
-		return null;
+		Item CurrentItem = this.ItemH.getItem(ItemName);
+		return CurrentItem;
 	}
 	
-	public Customer getCustomer(int id)
+	public Customer getCustomer(String CustomerName)
 	{
-		return null;
+		Customer CurrentCustomer = this.CustomerH.getCustomer(CustomerName);
+		return CurrentCustomer;
 	}
 	
-	public boolean rentToCustomer(int customerId, int itemId)
+	public boolean rentToCustomer(String CustomerName, String ItemName)
 	{
+		//Adds the item to the customers
+		Customer CurrentCustomer = this.getCustomer(CustomerName);
+		Item CurrentItem = this.getItem(ItemName);
+		CurrentCustomer.addItem(CurrentItem);
 		return true;
 	}
+	public boolean Rent(String CustomerName){
+		//Adds the Customer to the vector with customers with rented items
+		Customer CurrentCustomer = this.getCustomer(CustomerName);
+		this.CustomerWithRentedItems.add(CurrentCustomer);
+		return true;
+	}
+	
 }
