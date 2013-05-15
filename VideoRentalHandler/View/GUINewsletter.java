@@ -80,6 +80,14 @@ public class GUINewsletter extends JFrame
 			this.newsletterH.setTitle(this.titleField.getText());
 			newsletterH.setContent(this.contentTextArea.getText());
 			newsletterH.send();
+			
+			this.addressList.setListData(new String[0]);
+			this.contentTextArea.setText("");
+			this.titleField.setText("");
+			this.preferenceComboBox.setSelectedIndex(0);
+			
+			JOptionPane.showMessageDialog(null, "Message sent", "ERROR",
+				    JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
