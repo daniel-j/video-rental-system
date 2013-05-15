@@ -6,9 +6,12 @@ import java.util.Vector;
 //Import what this class use
 import Model.ItemPackage.*;
 
-@SuppressWarnings("unused")
 public class Customer implements Serializable
 {
+	/**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
 	private String ssn;
