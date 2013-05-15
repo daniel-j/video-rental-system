@@ -48,6 +48,7 @@ public class GUIItem extends JFrame
 	private String[] priceGroups;
 	private String[] releaseYears;
 	private String selectedItem;
+	private int selectedIndex;
 	
 	private ItemHandler ItemH;
 	private class ButtonListener implements ActionListener
@@ -59,7 +60,7 @@ public class GUIItem extends JFrame
 			
 			String buttonText = event.getActionCommand();
 			selectedItem = output.getSelectedValue();
-			
+			selectedIndex = output.getSelectedIndex();
 			output.setEnabled(true);
 			
 			if(buttonText.equals("Video"))
@@ -68,7 +69,7 @@ public class GUIItem extends JFrame
 				game.setEnabled(true);
 				platform.setEnabled(false);
 				medium.setEnabled(true);
-				
+				output.setListData(ItemH.getAllVideos());
 				genre.removeAllItems();
 				
 				for(String str : genres)
@@ -85,6 +86,7 @@ public class GUIItem extends JFrame
 				video.setEnabled(true);
 				medium.setEnabled(false);
 				platform.setEnabled(true);
+				output.setListData(ItemH.getAllGames());
 				genre.removeAllItems();
 				
 				for(String str : gameGenres)
@@ -111,26 +113,16 @@ public class GUIItem extends JFrame
 			
 			if(buttonText.equals("Current in stock"))
 			{
-				int id = -1;
-				String input = JOptionPane.showInputDialog("ID:");
+				selectedIndex = output.getSelectedIndex();
 				
-				if(input != null)
+				if(selectedItem != null)
 				{
-					id = Integer.parseInt(input);
-					if(ItemH.getItemId(id) == -1)
-					{
-						JOptionPane.showMessageDialog(null, "No item with that ID, or the list is empty!");
-					}
-					else
-					{
-						JOptionPane.showMessageDialog(null, "There are: " + ItemH.getItemId(id) + " items with ID: " + id + ".");
-					}
+					JOptionPane.showMessageDialog(null, "There are: " + ItemH.currentInStock(selectedIndex) + " items of this type.");
 				}
 				else
 				{
-					return;
+					JOptionPane.showMessageDialog(null, "No item selected!");
 				}
-				
 			}
 			if(buttonText.equals("Get list of all"))
 			{
@@ -146,17 +138,30 @@ public class GUIItem extends JFrame
 			}
 			if(buttonText.equals("Show item info"))
 			{
-				output.setListData(ItemH.getItemInfo(selectedItem));
-				output.setEnabled(false);
+				selectedIndex = output.getSelectedIndex();
+				if(selectedItem == null)
+				{
+					JOptionPane.showMessageDialog(null, "No item selected!");
+				}
+				else
+				{
+					output.setListData(ItemH.getItemInfo(selectedIndex));
+					output.setEnabled(false);
+				}
+				
 			}
 			if(buttonText.equals("Remove item"))
 			{
+				selectedIndex = output.getSelectedIndex();
 				if(selectedItem != null)
 				{
 					int answer = JOptionPane.showConfirmDialog(null, "You are about to delete: " + selectedItem + "! \n Are you sure?");
+					
 					if(answer == 0)
 					{
-						ItemH.removeItem(selectedItem);
+						int choice = Integer.parseInt(JOptionPane.showInputDialog("Remove all units of this item? (1) \nRemove this single item? (2)"));
+						
+						ItemH.removeItem(choice, selectedItem, selectedIndex);
 						output.setListData(ItemH.getAllItemsAsStrings());
 					}
 					else
@@ -171,6 +176,7 @@ public class GUIItem extends JFrame
 			}
 			if(buttonText.equals("Edit item"))
 			{
+				selectedIndex = output.getSelectedIndex();
 				if(selectedItem == null)
 				{
 					JOptionPane.showMessageDialog(null, "No item selected!");
@@ -179,15 +185,30 @@ public class GUIItem extends JFrame
 				{
 					String itemToEdit = output.getSelectedValue();
 					editItem(itemToEdit);
+					
+					buttons[0].setEnabled(false);
+					buttons[1].setEnabled(false);
+					buttons[2].setEnabled(false);
+					buttons[3].setEnabled(false);
+					buttons[4].setEnabled(false);
+					buttons[5].setEnabled(false);
+					buttons[6].setEnabled(false);
+					buttons[7].setEnabled(false);
 					buttons[8].setEnabled(true);
+					buttons[9].setEnabled(false);
 				}
 			}
 			if(buttonText.equals("Change input"))
 			{
+				selectedIndex = output.getSelectedIndex();
 				String itemToChange = output.getSelectedValue();
 				changeItem(itemToChange);
-				output.setListData(ItemH.getItemInfo(selectedItem));
+				output.setListData(ItemH.getItemInfo(selectedIndex));
 				clearFields();
+				for(JButton butt : buttons)
+				{
+					butt.setEnabled(true);
+				}
 				buttons[8].setEnabled(false);
 				output.setEnabled(false);
 			}
@@ -264,8 +285,8 @@ public class GUIItem extends JFrame
 			((Game) newItem).setPlatform(String.valueOf(this.platform.getSelectedItem()));
 		}
 		// curr in stock
-		int currInStock = Integer.parseInt(JOptionPane.showInputDialog("How many copies?" + "\nPrevious stockcount was: " + newItem.getInStock()));
-		newItem.setInStock(currInStock);
+//		int currInStock = Integer.parseInt(JOptionPane.showInputDialog("How many copies?" + "\nPrevious stockcount was: " + newItem.getInStock()));
+//		newItem.setInStock(currInStock);
 	}
 	// EDIT ITEM
 	private void editItem(String itemToEdit)
