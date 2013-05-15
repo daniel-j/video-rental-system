@@ -62,7 +62,7 @@ public class GUISearch extends JFrame
 
 		private void searchItem() 
 		{
-			if(this.searchField != null)
+			if(this.searchField.equals(null))
 			{
 				String searchString = this.searchField.getText();
 				
@@ -86,7 +86,7 @@ public class GUISearch extends JFrame
 
 		private void searchCustomer()
 		{
-			if(this.searchField != null)
+			if(this.searchField.equals(null))
 			{
 				String searchString = this.searchField.getText();
 				
