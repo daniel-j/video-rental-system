@@ -122,6 +122,7 @@ public class RentalSystem
 		{
 			File checkFile = new File("database.dat");
 			
+			
 			if(checkFile.exists())
 			{
 				ObjectInputStream in = new ObjectInputStream(new FileInputStream(checkFile));
