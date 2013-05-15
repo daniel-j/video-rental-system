@@ -14,7 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import Controller.RentalSystem;
 import Model.CustomerPackage.Customer;
 import Model.CustomerPackage.CustomerHandler;
 import Model.ItemPackage.Item;
@@ -28,7 +27,6 @@ public class GUICustomer extends JFrame
 	 */
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("unused")
-	private RentalSystem rentalSystem;
 	private CustomerHandler cHandler;
 	
 	private Container contentPane;
@@ -204,7 +202,7 @@ public class GUICustomer extends JFrame
 		String newAdress = this.adress.getText();
 		String newPreference = (String) this.preferences.getSelectedItem();
 		
-		cHandler.addCustomer(newName, newSsn, newAdress, newPreference);
+		this.cHandler.addCustomer(newName, newSsn, newAdress, newPreference);
 	}
 	// UPDATE THE OUTPUTLIST
 	@SuppressWarnings("unchecked")
@@ -240,10 +238,7 @@ public class GUICustomer extends JFrame
 	// INITIATE INSTANCE VARIABLES
 	@SuppressWarnings("rawtypes")
 	private void initiateInstanceVariables()
-	{
-		this.rentalSystem = new RentalSystem();
-		this.cHandler = new CustomerHandler();
-		
+	{	
 		this.contentPane = this.getContentPane();
 		this.contentPane.setLayout(new GridLayout(1, 2));
 		this.name = new JTextField();
@@ -331,14 +326,15 @@ public class GUICustomer extends JFrame
 		this.contentPane.add(this.output);
 	}
 	// GUI CONSTRUCTOR
-	public GUICustomer ()
+	public GUICustomer(CustomerHandler ch)
 	{
 		super();
+		this.cHandler = ch;
 		initiateInstanceVariables();
 		configureFrame();
 		buildLeftPanel();
 		addListToTheRight();
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 	
 }

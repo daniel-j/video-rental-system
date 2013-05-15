@@ -1,14 +1,19 @@
 //In this package
 package Model.CustomerPackage;
 
+import java.io.Serializable;
 import java.util.Vector;
 
 import Model.ItemPackage.Item;
 
 //Import what this class use
 
-public class CustomerHandler
+public class CustomerHandler implements Serializable
 {	
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
 	private Vector<Customer> customers;
 	static int customerId;
 	/**
@@ -41,7 +46,6 @@ public class CustomerHandler
 	public boolean addCustomer(String name, String ssn, String address, String preference)
 	{
 		this.customers.add(new Customer(name, ssn, address, preference));
-		
 		return true;
 	}
 	
