@@ -57,9 +57,16 @@ public class GUIRental extends JFrame
 			{
 				rent();
 			}
+			else if(buttonText.equals("Return item")){
+				returnMovie();
+			}
 		}
 	}
 	
+	private void returnMovie(){
+		System.out.println("hej");
+	}
+
 	private void listRented()
 	{
 		Vector<Customer> cust = this.RentalH.listRented();
@@ -131,6 +138,7 @@ public class GUIRental extends JFrame
 		else
 		{
 			this.RentalH.Rent(this.nameField.getText());
+			dispose();
 		}
 	}
 	
@@ -191,11 +199,18 @@ public class GUIRental extends JFrame
 		Dimension dim = button1.getPreferredSize();
 		button1.setSize(dim);
 		
+		JButton button2 = new JButton("Return item");
+		button2.addActionListener(bListener);
+		button2.setLocation(125, 25);
+		dim = button2.getPreferredSize();
+		button2.setSize(dim);
+		
 		JScrollPane jsp = new JScrollPane(this.rentedList);
 		jsp.setSize(250, 200);
 		jsp.setLocation(25, 60);
 		
 		panel.add(button1);
+		panel.add(button2);
 		panel.add(jsp);
 		
 		this.contentPane.add(panel);
@@ -260,7 +275,7 @@ public class GUIRental extends JFrame
 		button2.addActionListener(bListener);
 		button2.setLocation(100, 275);
 		dim = button2.getPreferredSize();
-		button2.setSize(dim);
+		button2.setSize(dim);	
 		
 		JScrollPane jsp = new JScrollPane(this.newRentList);
 		jsp.setSize(250, 125);
