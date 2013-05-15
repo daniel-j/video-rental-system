@@ -112,15 +112,8 @@ public class GUIRental extends JFrame
 			this.newRentList.setListData(this.NewRentingOrder);
 			this.priceField.setText(Double.toString(RentalH.getTotalPrice()));
 			
-			System.out.println(this.RentalH.getItemList().elementAt(this.itembox.getSelectedIndex())
-					.getId());
 			
 			this.itembox.removeAllItems();
-
-			for(int i = 0; i < 4; i++)
-			{
-				System.out.println(this.RentalH.getItemList().elementAt(i).getStatus());
-			}
 			
 			this.itembox.addItem("Choose item");
 			for(Item item : this.RentalH.getItemList())

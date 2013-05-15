@@ -23,6 +23,8 @@ public class RentalSystem
 	private Database 			database;
 	private GUISystem			SystemGui;
 	
+
+	
 	//Construct
 	public RentalSystem()
 	{

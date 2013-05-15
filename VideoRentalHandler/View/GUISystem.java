@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 
 public class GUISystem extends JFrame
 {
+	
     /**
      * 
      */
