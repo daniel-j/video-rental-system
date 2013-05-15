@@ -155,7 +155,7 @@ public class GUICustomer extends JFrame
 		{
 			for(Item item : cHandler.getCustomer(selectedCustomer).getRentedItems())
 			{
-				itemsRented[counter] = "<HTML>" + (counter+1) + " " + item.getTitle() + "<br>";
+				itemsRented[counter] = "<HTML>" + (++counter) + " " + item.getTitle() + "<br>";
 			}
 			
 		}
@@ -250,6 +250,7 @@ public class GUICustomer extends JFrame
 		this.adress.setText("");
 		this.ssn.setText("");
 		this.preferences.setSelectedIndex(0);
+		this.rentedItems.removeAll();
 	}
 	
 	// INITIATE INSTANCE VARIABLES

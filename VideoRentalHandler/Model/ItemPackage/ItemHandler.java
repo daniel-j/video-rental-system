@@ -142,7 +142,7 @@ public class ItemHandler implements Serializable
 		
 		for(int i = 0; i < this.arrayOfItems.size(); i++)
 		{
-			if(this.arrayOfItems.get(i).getTitle().equals(title))
+			if(this.arrayOfItems.get(i).getTitle().equals(title) && this.arrayOfItems.get(i).getStatus() != true)
 			{
 				temp = this.arrayOfItems.get(i);
 			}
@@ -156,7 +156,7 @@ public class ItemHandler implements Serializable
 		
 		for(int i = 0; i < this.arrayOfItems.size(); i++)
 		{
-			if(this.arrayOfItems.get(i).getId() == id)
+			if(this.arrayOfItems.get(i).getId() == id && this.arrayOfItems.get(i).getStatus() != true)
 			{
 				this.arrayOfItems.get(i).setStatus(rented);
 				changed = true;

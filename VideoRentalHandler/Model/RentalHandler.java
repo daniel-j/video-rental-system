@@ -30,6 +30,11 @@ public class RentalHandler
 		return this.TotalPrice;
 	}
 	
+	public double getTotalPrice()
+	{
+		return this.TotalPrice;
+	}
+	
 	public Vector<Customer> listRented()
 	{
 		return this.CustomerWithRentedItems;
@@ -51,10 +56,11 @@ public class RentalHandler
 		
 	}
 	
-	public void setItemStatus(String ItemName, boolean rented)
+	public void setItemStatus(Item item, boolean rented)
 	{
-		Item CurrentItem = this.getItem(ItemName);
-		CurrentItem.setStatus(rented);
+		item.setStatus(rented);
+		//Item CurrentItem = this.getItem(ItemName);
+		//CurrentItem.setStatus(rented);
 	}
 	
 	public Item getItem(String ItemName)
@@ -68,7 +74,9 @@ public class RentalHandler
 		Customer CurrentCustomer = this.CustomerH.getCustomer(CustomerName);
 		return CurrentCustomer;
 	}
-	public Vector<Item> getItemList(){
+	
+	public Vector<Item> getItemList()
+	{
 		return this.ItemH.getListOfItems();
 	}
 	
@@ -79,6 +87,8 @@ public class RentalHandler
 		Item CurrentItem = this.getItem(ItemName);
 		CurrentItem.setRentalExpireDate(nrOfDays);
 		CurrentCustomer.addItem(CurrentItem);
+		this.calculatePrice(this.ItemH.getPrice(CurrentItem.getPriceGroup()));
+		this.ItemH.setItemStatus(CurrentItem.getId(), true);
 		return true;
 	}
 	public boolean Rent(String CustomerName){

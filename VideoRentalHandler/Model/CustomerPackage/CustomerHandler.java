@@ -94,7 +94,7 @@ public class CustomerHandler implements Serializable
 	 */
 	public Customer getCustomer(String name)
 	{
-		Customer temp = new Customer();
+		Customer temp = null;
 		for(int i = 0; i < this.customers.size(); i++)
 		{
 			if(this.customers.get(i).getName().equals(name))

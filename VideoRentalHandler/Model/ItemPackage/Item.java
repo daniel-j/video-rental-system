@@ -89,6 +89,10 @@ public abstract class Item implements Serializable
 	{
 		return this.inStock;
 	}
+	public boolean getStatus()
+	{
+		return this.status;
+	}
 	
 
 }

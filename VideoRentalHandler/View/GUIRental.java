@@ -62,14 +62,46 @@ public class GUIRental extends JFrame
 	
 	private void listRented()
 	{
+		String name = this.nameField.getText();
+		Customer cust = this.RentalH.getCustomer(name);
 		
+		
+		if(name.equals(""))
+		{
+			JOptionPane.showMessageDialog(null, "You have to enter a name", "ERROR",
+				    JOptionPane.ERROR_MESSAGE);
+		}
+		else if(cust == null)
+		{
+			JOptionPane.showMessageDialog(null, "No customer with that name", "ERROR",
+				    JOptionPane.ERROR_MESSAGE);
+		}
+		else
+		{
+			Vector<String> list = new Vector<String>();
+			
+			for(Item item : cust.getRentedItems())
+			{
+				list.add(item.getTitle());
+			}
+			
+			this.rentedList.setListData(list);
+		}
 	}
 	
 	private void add()
 	{
+		String name = this.nameField.getText();
+		Customer cust = this.RentalH.getCustomer(name);
+		
 		if(this.nameField.getText().equals("") || this.daysField.getText().equals("") || this.itembox.getSelectedIndex() == 0)
 		{
 			JOptionPane.showMessageDialog(null, "You can't have empty fields!", "ERROR",
+				    JOptionPane.ERROR_MESSAGE);
+		}
+		else if(cust == null)
+		{
+			JOptionPane.showMessageDialog(null, "No customer with that name", "ERROR",
 				    JOptionPane.ERROR_MESSAGE);
 		}
 		else
@@ -78,8 +110,27 @@ public class GUIRental extends JFrame
 			this.RentalH.rentToCustomer(this.nameField.getText(), (String)this.itembox.getModel().getSelectedItem(), Integer.parseInt(this.daysField.getText()));
 			this.NewRentingOrder.add((String)this.itembox.getSelectedItem());
 			this.newRentList.setListData(this.NewRentingOrder);
+			this.priceField.setText(Double.toString(RentalH.getTotalPrice()));
+			
+			System.out.println(this.RentalH.getItemList().elementAt(this.itembox.getSelectedIndex())
+					.getId());
+			
+			this.itembox.removeAllItems();
+
+			for(int i = 0; i < 4; i++)
+			{
+				System.out.println(this.RentalH.getItemList().elementAt(i).getStatus());
+			}
+			
+			this.itembox.addItem("Choose item");
+			for(Item item : this.RentalH.getItemList())
+			{
+				if(!item.isStatus())
+				{
+					this.itembox.addItem(item.getTitle());
+				}
+			}
 		}
-		
 	}
 	
 	private void rent()

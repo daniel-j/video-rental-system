@@ -149,5 +149,6 @@ public class Customer implements Serializable
 			this.TotalRented++;
 		}
 		this.rentedItems.add(item);
+		System.out.println(this.rentedItems.size());
 	}
 }
