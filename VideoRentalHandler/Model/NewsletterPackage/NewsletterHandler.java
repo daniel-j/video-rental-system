@@ -1,20 +1,25 @@
 //In this package
 package Model.NewsletterPackage;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import Model.CustomerPackage.CustomerHandler;
 
 //Import what this class use
 public class NewsletterHandler
 {	
 	private Newsletter newsletter = null;
+	private CustomerHandler customerH = null;
 	
 	/**
 	 * Constructor
 	 */
-	public NewsletterHandler()
+	public NewsletterHandler(CustomerHandler ch)
 	{
 		super();
 		this.newsletter = new Newsletter();
+		this.customerH = ch;
 	}
 	
 	/**
@@ -26,6 +31,11 @@ public class NewsletterHandler
 	{
 		super();
 		this.newsletter = new Newsletter(title, content);
+	}
+	
+	public Newsletter getNewsletter()
+	{
+		return this.newsletter;
 	}
 	
 	/**
@@ -52,8 +62,7 @@ public class NewsletterHandler
 	 */
 	public void getAddressList(String preference)
 	{
-		CustomerHandler temp = new CustomerHandler();
-		this.newsletter.setAddressList(temp.getCustomersWithPreferences(preference));
+		this.newsletter.setAddressList(this.customerH.getCustomersWithPreferences(preference));
 	}
 	
 	/**
@@ -61,7 +70,25 @@ public class NewsletterHandler
 	 */
 	public void send()
 	{
-		System.out.println(this.newsletter.getTitle());
-		System.out.println(this.newsletter.getContent());
+		int size = this.newsletter.getAddressList().size();
+		
+		try
+		{
+			for(int i = 0; i < size; i++)
+			{
+				String temp = this.newsletter.getAddressList().elementAt(i);
+				PrintWriter out = new PrintWriter(this.newsletter.getTitle() + "#" + i + ".txt");
+				
+				out.println(temp + "\r\n");
+				out.println(this.newsletter.getTitle() + "\r\n");
+				out.println(this.newsletter.getContent());
+				
+				out.close();
+			}
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

@@ -124,7 +124,7 @@ public class CustomerHandler implements Serializable
 		{
 			if(temp.getPreference().equals(preference))
 			{
-				addressList.add(temp.getAddress());
+				addressList.add(temp.getName() + ", " + temp.getAddress());
 			}
 		}
 		

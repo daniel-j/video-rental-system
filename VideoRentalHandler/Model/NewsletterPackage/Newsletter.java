@@ -80,4 +80,9 @@ public class Newsletter
 	{
 		this.addressList = addrlist;
 	}
+	
+	public Vector<String> getAddressList()
+	{
+		return this.addressList;
+	}
 }
