@@ -33,6 +33,10 @@ public class NewsletterHandler
 		this.newsletter = new Newsletter(title, content);
 	}
 	
+	/**
+	 * Get newsletter
+	 * @return			Newsletter
+	 */
 	public Newsletter getNewsletter()
 	{
 		return this.newsletter;

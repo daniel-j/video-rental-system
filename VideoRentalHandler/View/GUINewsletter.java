@@ -57,20 +57,11 @@ public class GUINewsletter extends JFrame
 	 */
 	private void getAddressList()
 	{
-		int index = this.preferenceComboBox.getSelectedIndex();
 		Object obj = this.preferenceComboBox.getModel().getSelectedItem();
 		String preference = (String) obj;
 		
-		if(index == 0)
-		{
-			JOptionPane.showMessageDialog(null, "You can't have empty fields", "ERROR",
-				    JOptionPane.ERROR_MESSAGE);
-		}
-		else
-		{
-			this.newsletterH.getAddressList(preference);
-			this.addressList.setListData(this.newsletterH.getNewsletter().getAddressList());
-		}
+		this.newsletterH.getAddressList(preference);
+		this.addressList.setListData(this.newsletterH.getNewsletter().getAddressList());
 	}
 	
 	/**
@@ -139,7 +130,6 @@ public class GUINewsletter extends JFrame
 	{
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		//panel.setBorder(BorderFactory.createTitledBorder("Write letter"));
 		
 		JLabel label1 = new JLabel("Title");
 		label1.setLocation(25, 15);
@@ -173,7 +163,6 @@ public class GUINewsletter extends JFrame
 	{
 		JPanel panel = new JPanel();
 		panel.setLayout(null);
-		//panel.setBorder(BorderFactory.createTitledBorder("Send"));
 
 		JLabel label1 = new JLabel("Choose preference");
 		label1.setLocation(25, 15);

@@ -4,7 +4,6 @@ package Model.NewsletterPackage;
 //Import what this class use
 import java.util.Vector;
 
-@SuppressWarnings("unused")
 public class Newsletter
 {
 	
@@ -81,6 +80,10 @@ public class Newsletter
 		this.addressList = addrlist;
 	}
 	
+	/**
+	 * Get Addresslist
+	 * @return			Addresslist
+	 */
 	public Vector<String> getAddressList()
 	{
 		return this.addressList;
