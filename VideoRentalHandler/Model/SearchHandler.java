@@ -6,8 +6,6 @@ import Model.ItemPackage.*;
 import java.util.Vector;
 
 
-//Import what this class use
-
 public class SearchHandler
 {
 	private Vector <Customer> customers;
@@ -15,83 +13,153 @@ public class SearchHandler
 	
 	public SearchHandler(ItemHandler ItemH, CustomerHandler CustomerH)
 	{
+<<<<<<< HEAD
 	    //Vectors
 	    this.customers = new Vector<Customer>();
 	    this.items = new Vector<Item>();
 	    
+=======
+	    //Vectors	    
+>>>>>>> Forcefully made updates to search handler
 	    this.customers = CustomerH.getListOfCustomers();
 	    this.items = ItemH.getListOfItems();
-	   
+	    	   
 	}
+<<<<<<< HEAD
 	public String[] SearchCustomer(String searchString)
+=======
+	public Vector<String> SearchCustomer(String searchString)
+>>>>>>> Forcefully made updates to search handler
 	{
-		String returnString = null;
-		int size = this.customers.size();
-		int counter = 0;
-		String Result[] = new String[size];
-		for (Customer cust : customers) 
+		String returnString = "";
+	
+		Vector<String> Result;
+		
+		if(this.customers.size() == 0)
 		{
-		   if(cust.getName().equals(searchString))
-		   {
-		       returnString = cust.toString();
-		       Result[counter] = returnString;
-		       counter++;
-		   }
-		   else if(cust.getId() == (Integer.parseInt(searchString)))
-		   {
-				returnString = cust.toString();
-				Result[counter] = returnString;
-				counter++;
-		   }
-		   else if(cust.getSsn().equals(searchString))
-		   {
-				returnString = cust.toString();
-				Result[counter] = returnString;
-				counter++;
-		   }
-		   else if(cust.getAddress().equals(searchString))
-		   {
-				returnString = cust.toString();
-				Result[counter] = returnString;
-				counter++;
-		   }
+		    Result = new Vector<String>();
 		}
-		int newSize = counter;
-		String returnArr[] = new String[newSize];
-		for(int i = 0; i<newSize; i++){
-			returnArr[i] = Result[i];
+		else
+		{
+		    Result = new Vector<String>();
 		}
-		return returnArr;
+		if(this.customers.size() < 1)
+		{
+		    Result.add("");
+		}
+		else
+		{
+		    for (Customer cust : customers) 
+			{
+			   if(cust.getName().equals(searchString))
+			   {
+			       returnString = cust.getName();
+			       Result.add(returnString);
+			   }
+			   /*
+			   else if(Integer.parseInt(searchString) == cust.getId())
+			   {
+			       	returnString = cust.toString();
+			       	Result.add(returnString);
+					
+			   }
+			   */
+			   else if(cust.getSsn().equals(searchString))
+			   {
+				returnString = cust.getName();
+				Result.add(returnString);
+					
+			   }
+			   else if(cust.getAddress().equals(searchString))
+			   {
+				returnString = cust.getName();
+				Result.add(returnString);
+					
+			   }
+
+			}
+		}
+		
+		Vector<String> rtrVect = new Vector<String>();
+		
+		try
+		{		
+		    	if(Result.isEmpty())
+			{
+		    	    rtrVect.add("");
+			}
+			else
+			{
+			    for(String str : Result)
+			    {
+				rtrVect.add(str);
+			    }
+			}
+		
+		}
+		catch (NullPointerException | ArrayIndexOutOfBoundsException e)
+		{
+			e.addSuppressed(null);
+		}		
+
+		return rtrVect;
 	}
 	
-	public String[] SearchItem(String searchString)
-	{
-		String returnString = null;
+	public Vector<String> SearchItem(String searchString)
+	{    
+		String returnString = "";
 		int size = this.items.size();
-		int counter = 0;
-		String Result[] = new String[size];
 		
-		for(Item itm : items)
+		Vector<String> Result = new Vector<String>();
+		
+		
+		if(size < 1)
 		{
-			if(itm.getTitle().equals(searchString))
+		    Result.add("");
+		}
+		else
+		{
+		    for(Item itm : items)
 			{
-			    returnString = itm.toString();
-			    Result[counter] = returnString;
-			    counter++;
-			}
-			else if(itm.getId() == (Integer.parseInt(searchString)))
-			{
-			    returnString = itm.toString();
-			    Result[counter] = returnString;
-			    counter++;
+				if(itm.getTitle().equals(searchString))
+				{
+				    returnString = itm.toString();
+				    Result.add(returnString);
+				}
+				/*
+				else if(Integer.parseInt(searchString) == itm.getId())
+				{
+				    returnString = itm.toString();
+				    Result.add(returnString);
+				}
+				*/
+				
 			}
 		}
-		int newSize = counter;
-		String returnArr[] = new String[newSize];
-		for(int i = 0; i<newSize; i++){
-			returnArr[i] = Result[i];
+		
+		Vector<String> rtrVect = new Vector<String>();
+
+		try
+		{		
+		    	if(Result.isEmpty())
+			{
+		    	    rtrVect.add("");
+			}
+			else
+			{
+			    for(String str : Result)
+			    {
+				rtrVect.add(str);
+			    }
+			}
+		
 		}
-		return returnArr;
+		catch (NullPointerException | ArrayIndexOutOfBoundsException e)
+		{
+			e.addSuppressed(null);
+		}
+		
+		return rtrVect;
 	}
 	
 }
