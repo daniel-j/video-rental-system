@@ -64,7 +64,7 @@ public class GUISystem extends JFrame
 			}
 			else if(buttonText.equals("Custumers"))
 			{
-				enterCustomers();
+				enterCustumers();
 			}
 			else if(buttonText.equals("Items"))
 			{
@@ -122,7 +122,7 @@ public class GUISystem extends JFrame
 	    
 	}
 
-	private void enterCustomers() 
+	private void enterCustumers() 
 	{
 		CustomerHandler customerH = this.MainSystemReference.getCustomerHandler();
 		this.guiCustomer = new GUICustomer(customerH);
