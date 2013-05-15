@@ -64,7 +64,7 @@ public class GUISystem extends JFrame
 			}
 			else if(buttonText.equals("Custumers"))
 			{
-				enterCustumers();
+				enterCustomers();
 			}
 			else if(buttonText.equals("Items"))
 			{
@@ -122,7 +122,7 @@ public class GUISystem extends JFrame
 	    
 	}
 
-	private void enterCustumers() 
+	private void enterCustomers() 
 	{
 		CustomerHandler customerH = this.MainSystemReference.getCustomerHandler();
 		this.guiCustomer = new GUICustomer(customerH);
@@ -168,7 +168,7 @@ public class GUISystem extends JFrame
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
 		
-		String[] buttonTxt = {"New rental", "Custumers", "Items", "Search", "Write newsletter", "Logout"};
+		String[] buttonTxt = {"New rental", "Customers", "Items", "Search", "Write newsletter", "Logout"};
 		ButtonListener buttonListener = new ButtonListener();
 		
 		JButton button = new JButton(buttonTxt[0]);
