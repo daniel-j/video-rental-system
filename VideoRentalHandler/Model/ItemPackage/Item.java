@@ -5,6 +5,10 @@ import java.sql.Date;
 
 public abstract class Item implements Serializable
 {
+	/**
+	 * 
+	 */
+	private static final long	serialVersionUID	= 1L;
 	private String title;
 	private int Id = 0;
 	private boolean status;

@@ -123,8 +123,9 @@ public class GUISystem extends JFrame
 
 	private void enterCostumers() 
 	{
-		this.guiCustomer = new GUICustomer();
-	    //guiCustomer.setVisible(true);
+		CustomerHandler customerH = this.MainSystemReference.getCustomerHandler();
+		this.guiCustomer = new GUICustomer(customerH);
+	    guiCustomer.setVisible(true);
 	    
 	}
 
@@ -132,8 +133,7 @@ public class GUISystem extends JFrame
 	{
 		RentalHandler RentalH = this.MainSystemReference.getRentalHandler();
 		this.guiRental = new GUIRental(RentalH);
-	    //guiRental.setVisible(true);
-	    
+	    guiRental.setVisible(true);
 	}
 	
 	
