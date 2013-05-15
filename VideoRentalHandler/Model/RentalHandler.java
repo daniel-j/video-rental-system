@@ -56,11 +56,10 @@ public class RentalHandler
 		
 	}
 	
-	public void setItemStatus(Item item, boolean rented)
-	{
-		item.setStatus(rented);
-		//Item CurrentItem = this.getItem(ItemName);
-		//CurrentItem.setStatus(rented);
+	public void setItemStatus(String ItemName, boolean rented)
+	{		
+		Item CurrentItem = this.getItem(ItemName);
+		CurrentItem.setStatus(rented);
 	}
 	
 	public Item getItem(String ItemName)

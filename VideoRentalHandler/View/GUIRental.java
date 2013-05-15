@@ -62,27 +62,23 @@ public class GUIRental extends JFrame
 	
 	private void listRented()
 	{
-		String name = this.nameField.getText();
-		Customer cust = this.RentalH.getCustomer(name);
+		Vector<Customer> cust = this.RentalH.listRented();
 		
-		
-		if(name.equals(""))
+		if(cust.size() == 0)
 		{
-			JOptionPane.showMessageDialog(null, "You have to enter a name", "ERROR",
-				    JOptionPane.ERROR_MESSAGE);
-		}
-		else if(cust == null)
-		{
-			JOptionPane.showMessageDialog(null, "No customer with that name", "ERROR",
+			JOptionPane.showMessageDialog(null, "No rentings", "ERROR",
 				    JOptionPane.ERROR_MESSAGE);
 		}
 		else
 		{
 			Vector<String> list = new Vector<String>();
 			
-			for(Item item : cust.getRentedItems())
-			{
-				list.add(item.getTitle());
+			for(Customer customer : cust){
+				list.add(customer.getName());
+				for(Item item : customer.getRentedItems())
+				{
+					list.add(item.getTitle());
+				}
 			}
 			
 			this.rentedList.setListData(list);
@@ -106,7 +102,6 @@ public class GUIRental extends JFrame
 		}
 		else
 		{
-			//Inte klar har inte GUICustomer så kan inte skapa en kund
 			this.RentalH.rentToCustomer(this.nameField.getText(), (String)this.itembox.getModel().getSelectedItem(), Integer.parseInt(this.daysField.getText()));
 			this.NewRentingOrder.add((String)this.itembox.getSelectedItem());
 			this.newRentList.setListData(this.NewRentingOrder);
