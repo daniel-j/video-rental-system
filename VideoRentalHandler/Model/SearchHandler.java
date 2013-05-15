@@ -14,7 +14,7 @@ public class SearchHandler
 	private Vector <Item> items;
 	
 	public SearchHandler(ItemHandler ItemH, CustomerHandler CustomerH)
-	{	    
+	{
 	    //Vectors
 	    this.customers = new Vector<Customer>();
 	    this.items = new Vector<Item>();
@@ -23,7 +23,7 @@ public class SearchHandler
 	    this.items = ItemH.getListOfItems();
 	   
 	}
-	public String[] SearchCostumer(String searchString)
+	public String[] SearchCustomer(String searchString)
 	{
 		String returnString = null;
 		int size = this.customers.size();

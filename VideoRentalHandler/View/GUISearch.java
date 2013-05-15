@@ -37,9 +37,9 @@ public class GUISearch extends JFrame
 		{
 			String buttonText = e.getActionCommand();
 			
-			if(buttonText.equals("Search Costumer"))
+			if(buttonText.equals("Search Customer"))
 			{
-				searchCostumer();
+				searchCustomer();
 			}
 			else if(buttonText.equals("Search Item"))
 			{
@@ -83,16 +83,17 @@ public class GUISearch extends JFrame
 			
 		}
 
-		private void searchCostumer() 
+		private void searchCustomer()
 		{
 			if(this.searchField != null)
 			{
 				String searchString = this.searchField.getText();
-				this.SearchH.SearchCostumer(searchString);
 				
-				if(this.SearchH.SearchItem(searchString) != null)
+				String[] result = this.SearchH.SearchCustomer(searchString);
+				
+				if(result != null)
 				{
-					this.resultList.setListData(this.SearchH.SearchCostumer(searchString));
+					this.resultList.setListData(result);
 				}
 				else
 				{
@@ -165,7 +166,7 @@ public class GUISearch extends JFrame
 			JPanel buttonPanel = new JPanel();
 			buttonPanel.setLayout(new GridLayout(2, 3, 5, 5)); // 2 rows, 3 columns, 5 pixels in between
 			
-			String[] buttonTxt = {"Search Costumer", "Search Item", "Clear"};
+			String[] buttonTxt = {"Search Customer", "Search Item", "Clear"};
 			ButtonListener buttonListener = new ButtonListener();
 			
 			JButton button = new JButton(buttonTxt[0]);
