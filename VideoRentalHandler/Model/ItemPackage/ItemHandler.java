@@ -9,34 +9,34 @@ public class ItemHandler implements Serializable
 	private static final long serialVersionUID = 1L;
 	private Vector<Item> arrayOfItems;
 	private Vector<Double> priceGroup;
-	private int id;
+	static int id;
 	
 	public ItemHandler()
 	{
-		
 		this.arrayOfItems = new Vector<Item>();
 		this.priceGroup = new Vector<Double>(3);
 		this.priceGroup.add((double) 50);
 		this.priceGroup.add((double) 100);
 		this.priceGroup.add((double) 150);
-		this.id = 1;
+		ItemHandler.id = 1;
 	}
     	
 	public int getId() {
-		return id;
+		return ItemHandler.id;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		ItemHandler.id = id;
 	}
 
 	public boolean addItem(int video, String title, int priceGroup, String genre, int releaseYear, String medium, int inStock)
 	{
 		boolean added = false;
-		for(int i = 0; i<inStock; i++){
-		this.arrayOfItems.add(new Video(title, priceGroup, genre, releaseYear, medium, this.id, inStock));
-		this.id++;
-		System.out.println(this.id);
+		for(int i = 0; i<inStock; i++)
+		{
+		this.arrayOfItems.add(new Video(title, priceGroup, genre, releaseYear, medium, ItemHandler.id, inStock));
+		ItemHandler.id++;
+		System.out.println(ItemHandler.id);
 		}
 		added = true;
 		return added;
@@ -44,9 +44,10 @@ public class ItemHandler implements Serializable
 	public boolean addItem(String title, int priceGroup, String genre, int releaseYear, String platform, int inStock)
 	{
 		boolean added = false;
-		for(int i = 0; i<inStock; i++){
-			this.arrayOfItems.add(new Game(title, priceGroup, genre, releaseYear, platform, this.id, inStock));
-			this.id++;
+		for(int i = 0; i<inStock; i++)
+		{
+			this.arrayOfItems.add(new Game(title, priceGroup, genre, releaseYear, platform, ItemHandler.id, inStock));
+			ItemHandler.id++;
 		}
 		added = true;
 		return added;
@@ -88,43 +89,48 @@ public class ItemHandler implements Serializable
 		return edited;
 	}
 	
-	public boolean removeItem(String title)
+	public boolean removeItem(int choice, String title, int pos) 
 	{
 		boolean removed = false;
-		
-		for(int i = 0; i < this.arrayOfItems.size(); i++)
+		if(choice == 1)
 		{
-			if(this.arrayOfItems.get(i).getTitle() == title)
+			for(int i = 0; i < this.arrayOfItems.size(); i++)
 			{
-				this.arrayOfItems.remove(i);
-				removed = true;
+				if(this.arrayOfItems.get(i).getTitle().equals(title))
+				{
+					this.arrayOfItems.remove(i);
+					i--;
+				}
 			}
+			removed = true;
 		}
+		else
+		{
+			this.arrayOfItems.remove(pos);
+			for(Item item : this.arrayOfItems)
+			{
+				if(item.getTitle().equals(title))
+				{
+					item.setInStock(item.getInStock()-1);
+				}
+			}
+			removed = true;
+		}
+		
 		return removed;
 	}
 	
-	public int currentInStock(int id)
+	public int currentInStock(int pos)
 	{
 		int currInStock = 0;
-		boolean found = false;
+		
 		if(this.arrayOfItems.isEmpty())
 		{
 			currInStock = -1;
 		}
 		else
 		{
-			for(int i = 0; i < this.arrayOfItems.size(); i++)
-			{
-				if(this.arrayOfItems.get(i).getId() == id)
-				{
-					found = true;
-					currInStock = this.arrayOfItems.get(i).getInStock();
-				}
-			}
-			if(found == false)
-			{
-				currInStock = -2;
-			}
+			currInStock = this.arrayOfItems.get(pos).getInStock();
 		}
 		
 		return currInStock;
@@ -256,7 +262,7 @@ public class ItemHandler implements Serializable
 		return inStock;
 		
 	}
-	public String[] getItemInfo(String title)
+	public String[] getItemInfo(int pos)
 	{
 		String[] str = new String[1];
 		
@@ -267,13 +273,7 @@ public class ItemHandler implements Serializable
 		}
 		else
 		{
-			for(Item item : this.arrayOfItems)
-			{
-				if(item.getTitle().equals(title))
-				{
-					str[0] = item.toString();
-				}
-			}
+			str[0] = this.arrayOfItems.get(pos).toString();
 		}
 		return str;
 	}
