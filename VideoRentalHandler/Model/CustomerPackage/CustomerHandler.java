@@ -9,23 +9,27 @@ import Model.ItemPackage.Item;
 
 public class CustomerHandler
 {	
-	private int id;
 	private Vector<Customer> customers;
-	
+	static int customerId;
 	/**
 	 * Constructor
 	 */
 	public CustomerHandler()
 	{
 		this.customers = new Vector<Customer>();
-		this.id = 0;
+		this.customerId = 0;
 	}
-	public int getId(){
-		return this.id;
+	
+	public int getId()
+	{
+		return this.customerId;
 	}
-	public void setId(int id){
-		this.id = id;
+
+	public void setId(int id)
+	{
+		this.customerId = id;
 	}
+	
 	/**
 	 * Add customer to system
 	 * @param name			Name of customer
@@ -36,18 +40,9 @@ public class CustomerHandler
 	 */
 	public boolean addCustomer(String name, String ssn, String address, String preference)
 	{
-		this.customers.add(new Customer(name, ssn, address, preference,this.id++));
+		this.customers.add(new Customer(name, ssn, address, preference));
 		
 		return true;
-	}
-	public boolean Exist(String name){
-		boolean found = false;
-		for(int i = 0; i<this.customers.size() && found != true; i++){
-			if(this.customers.elementAt(i).getName().equals(name)){
-				found = true;
-			}
-		}
-		return found;
 	}
 	
 	/**
@@ -86,8 +81,17 @@ public class CustomerHandler
 	 */
 	public Customer getCustomer(String name)
 	{
-		int index = this.customers.indexOf(name);
-		return this.customers.elementAt(index);
+		Customer temp = new Customer();
+		for(int i = 0; i < this.customers.size(); i++)
+		{
+			if(this.customers.get(i).getName().equals(name))
+			{
+				temp = this.customers.get(i);
+			}
+		}
+		return temp;
+		//		int index = this.customers.indexOf(name);
+		//		return this.customers.elementAt(index);
 	}
 	
 	/**
@@ -131,8 +135,9 @@ public class CustomerHandler
 	{
 		return this.customers;
 	}
-	public void LoadedFromDb(Vector<Customer> Customers){
+	
+	public void LoadedFromDb(Vector<Customer> Customers)
+	{
 		this.customers = Customers;
 	}
-	
 }

@@ -1,18 +1,14 @@
 //In this package
 package Model.CustomerPackage;
-import java.io.Serializable;
 import java.util.Vector;
 
 //Import what this class use
 import Model.ItemPackage.*;
 
-public class Customer implements Serializable
+@SuppressWarnings("unused")
+public class Customer 
 {
-	/**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
-	private int id;
+	private int id = -1;
 	private String name;
 	private String ssn;
 	private Vector<Item> rentedItems;
@@ -26,7 +22,7 @@ public class Customer implements Serializable
 	public Customer() 
 	{
 		super();
-		this.id = 0;
+		//CustomerHandler.customerId++;
 		this.name = "";
 		this.ssn = "";
 		this.rentedItems = new Vector<Item>();
@@ -42,16 +38,17 @@ public class Customer implements Serializable
 	 * @param address		Address of customer
 	 * @param preference	Preference of customer
 	 */
-	public Customer(String name, String ssn, String address, String preference, int id) 
+	public Customer(String name, String ssn, String address, String preference) 
 	{
 		super();
-		this.id = id;
+		//CustomerHandler.customerId++;
 		this.name = name;
 		this.ssn = ssn;
 		this.rentedItems = new Vector<Item>();
 		this.address = address;
 		this.preference = preference;
 		this.TotalRented = 0;
+		this.id = CustomerHandler.customerId++;
 	}
 	
 	/**
