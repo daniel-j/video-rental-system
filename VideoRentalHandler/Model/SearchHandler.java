@@ -13,23 +13,12 @@ public class SearchHandler
 	
 	public SearchHandler(ItemHandler ItemH, CustomerHandler CustomerH)
 	{
-<<<<<<< HEAD
-	    //Vectors
-	    this.customers = new Vector<Customer>();
-	    this.items = new Vector<Item>();
-	    
-=======
-	    //Vectors	    
->>>>>>> Forcefully made updates to search handler
+	    //Vectors for local storage	    
 	    this.customers = CustomerH.getListOfCustomers();
 	    this.items = ItemH.getListOfItems();
 	    	   
 	}
-<<<<<<< HEAD
-	public String[] SearchCustomer(String searchString)
-=======
 	public Vector<String> SearchCustomer(String searchString)
->>>>>>> Forcefully made updates to search handler
 	{
 		String returnString = "";
 	
@@ -56,14 +45,17 @@ public class SearchHandler
 			       returnString = cust.getName();
 			       Result.add(returnString);
 			   }
-			   /*
-			   else if(Integer.parseInt(searchString) == cust.getId())
+			   
+			   else if(isInteger(searchString))
 			   {
-			       	returnString = cust.toString();
-			       	Result.add(returnString);
+			       if(Integer.parseInt(searchString) == cust.getId())
+			       {
+				   returnString = cust.toString();
+				   Result.add(returnString);
+			       }
 					
 			   }
-			   */
+			   
 			   else if(cust.getSsn().equals(searchString))
 			   {
 				returnString = cust.getName();
@@ -126,13 +118,16 @@ public class SearchHandler
 				    returnString = itm.toString();
 				    Result.add(returnString);
 				}
-				/*
-				else if(Integer.parseInt(searchString) == itm.getId())
-				{
-				    returnString = itm.toString();
-				    Result.add(returnString);
-				}
-				*/
+				
+				 else if(isInteger(searchString))
+				 {
+				     if(Integer.parseInt(searchString) == itm.getId())
+				     {
+					 returnString = itm.toString();
+					 Result.add(returnString);
+				     }
+						
+				 }
 				
 			}
 		}
@@ -160,6 +155,20 @@ public class SearchHandler
 		}
 		
 		return rtrVect;
+	}
+	
+	private boolean isInteger(String s) 
+	{
+	    try 
+	    { 
+	        Integer.parseInt(s); 
+	    } 
+	    catch(NumberFormatException e) 
+	    { 
+	        return false; 
+	    }
+	    // only got here if we didn't return false
+	    return true;
 	}
 	
 }
