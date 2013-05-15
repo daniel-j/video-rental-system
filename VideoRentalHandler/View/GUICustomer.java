@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -32,6 +33,7 @@ public class GUICustomer extends JFrame
 	private Container contentPane;
 	@SuppressWarnings("rawtypes")
 	private JList output;
+	private JScrollPane outputScroller;
 	private JList<String> rentedItems; 
 	
 	private JTextField name;
@@ -77,7 +79,7 @@ public class GUICustomer extends JFrame
 					JOptionPane.showMessageDialog(null, "You must fill in all input!");
 				}
 			}
-			if(buttonText.equals("Remove customer"))
+			else if(buttonText.equals("Remove customer"))
 			{
 				if(selectedCustomer == null)
 				{
@@ -90,7 +92,7 @@ public class GUICustomer extends JFrame
 					clearFields();
 				}
 			}
-			if(buttonText.equals("Edit customer"))
+			else if(buttonText.equals("Edit customer"))
 			{
 				if(selectedCustomer == null)
 				{
@@ -101,17 +103,24 @@ public class GUICustomer extends JFrame
 					editCustomer(selectedCustomer);
 				}
 			}
-			if(buttonText.equals("Change info"))
+			else if(buttonText.equals("Change info"))
 			{
 				changeCustomer(selectedCustomer);
 				showInfo(selectedCustomer);
 				clearFields();
 			}
-			if(buttonText.equals("Show info"))
+			else if(buttonText.equals("Show info"))
 			{
-				showInfo(selectedCustomer);
+				if(selectedCustomer == null)
+				{
+					JOptionPane.showMessageDialog(null, "No customer selected!");
+				}
+				else
+				{
+					showInfo(selectedCustomer);
+				}
 			}
-			if(buttonText.equals("List all"))
+			else if(buttonText.equals("List all"))
 			{
 				updateOutputList();
 				clearFields();
@@ -123,6 +132,12 @@ public class GUICustomer extends JFrame
 	@SuppressWarnings("unchecked")
 	private void showInfo(String selectedCustomer)
 	{
+		this.output.setEnabled(false);
+		this.listAllC.setEnabled(true);
+		this.removeC.setEnabled(false);
+		this.editC.setEnabled(false);
+		this.infoC.setEnabled(false);
+		this.changeC.setEnabled(false);
 		String[] temp = new String[1];
 		Customer tempC = cHandler.getCustomer(selectedCustomer);
 		temp[0] = "<HTML>Name: " + tempC.getName() + "<br>Adress: " + tempC.getAddress() + "<br>SSN: " + tempC.getSsn() + "<br>Preference: " + tempC.getPreference();
@@ -177,8 +192,9 @@ public class GUICustomer extends JFrame
 		}
 		
 		this.addC.setEnabled(false);
-		this.removeC.setEnabled(false);
+		
 		this.listAllC.setEnabled(false);
+		this.removeC.setEnabled(false);
 		this.editC.setEnabled(false);
 		this.infoC.setEnabled(false);
 		this.changeC.setEnabled(true);
@@ -207,7 +223,8 @@ public class GUICustomer extends JFrame
 	// UPDATE THE OUTPUTLIST
 	@SuppressWarnings("unchecked")
 	private void updateOutputList()
-	{		
+	{
+		this.output.setEnabled(true);
 		if(this.cHandler.getListOfCustomers().isEmpty())
 		{
 			JOptionPane.showMessageDialog(null, "Empty list!");
@@ -250,9 +267,11 @@ public class GUICustomer extends JFrame
 		this.ssn.setBorder(BorderFactory.createTitledBorder("SSN: "));
 		
 		this.output = new JList();
+		this.outputScroller = new JScrollPane(this.output);
+		
 		this.rentedItems = new JList<String>();
 		
-		this.output.setBorder(BorderFactory.createTitledBorder("Output"));
+		//this.output.setBorder(BorderFactory.createTitledBorder("Output"));
 		this.rentedItems.setBorder(BorderFactory.createTitledBorder("Rented items"));
 		
 		this.addC = new JButton("Add customer");
@@ -323,7 +342,7 @@ public class GUICustomer extends JFrame
 	// BUILD RIGHT SIDE
 	private void addListToTheRight()
 	{
-		this.contentPane.add(this.output);
+		this.contentPane.add(this.outputScroller);
 	}
 	// GUI CONSTRUCTOR
 	public GUICustomer(CustomerHandler ch)
@@ -334,6 +353,7 @@ public class GUICustomer extends JFrame
 		configureFrame();
 		buildLeftPanel();
 		addListToTheRight();
+		updateOutputList();
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 	}
 	

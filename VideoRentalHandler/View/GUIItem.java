@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 import Model.ItemPackage.*;
@@ -23,6 +24,7 @@ public class GUIItem extends JFrame
 	
 	private Container contentPane;
 	private JList<String> output;
+	private JScrollPane outputScroller;
 	private JTextField title;
 	
 	private JComboBox<String> priceGroup;
@@ -500,6 +502,7 @@ public class GUIItem extends JFrame
 		this.selectedItem = new String("");
 		
 		this.output = new JList<String>();
+		this.outputScroller = new JScrollPane(this.output);
 	}
 	// CONFIGURE FRAME
 	private void configureFrame()
@@ -571,8 +574,8 @@ public class GUIItem extends JFrame
 	// ADD LIST TO THE RIGHT
 	private void addListToTheRight()
 	{
-		this.output.setBorder(BorderFactory.createTitledBorder("Output"));
-		this.contentPane.add(this.output);
+		//this.output.setBorder(BorderFactory.createTitledBorder("Output"));
+		this.contentPane.add(this.outputScroller);
 	}
 	// GUI CONSTRUCTOR
 	public GUIItem (ItemHandler ItemH)
