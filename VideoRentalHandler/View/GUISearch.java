@@ -20,7 +20,8 @@ import javax.swing.JTextField;
 
 
 public class GUISearch extends JFrame
-{/**
+{
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
