@@ -16,6 +16,7 @@ public class CustomerHandler implements Serializable
 	private static final long	serialVersionUID	= 1L;
 	private Vector<Customer> customers;
 	static int customerId;
+	
 	/**
 	 * Constructor
 	 */
@@ -25,11 +26,19 @@ public class CustomerHandler implements Serializable
 		this.customerId = 0;
 	}
 	
+	/**
+	 * Get Id
+	 * @return		Id
+	 */
 	public int getId()
 	{
 		return this.customerId;
 	}
 
+	/**
+	 * Set Id
+	 * @param id			Id to be set
+	 */
 	public void setId(int id)
 	{
 		this.customerId = id;
@@ -94,8 +103,6 @@ public class CustomerHandler implements Serializable
 			}
 		}
 		return temp;
-		//		int index = this.customers.indexOf(name);
-		//		return this.customers.elementAt(index);
 	}
 	
 	/**
@@ -124,7 +131,7 @@ public class CustomerHandler implements Serializable
 		{
 			if(temp.getPreference().equals(preference))
 			{
-				addressList.add(temp.getAddress());
+				addressList.add(temp.getName() + ", " + temp.getAddress());
 			}
 		}
 		
@@ -140,6 +147,10 @@ public class CustomerHandler implements Serializable
 		return this.customers;
 	}
 	
+	/**
+	 * Load from database
+	 * @param Customers
+	 */
 	public void LoadedFromDb(Vector<Customer> Customers)
 	{
 		this.customers = Customers;

@@ -126,9 +126,16 @@ public class Customer implements Serializable
 	{
 		return this.preference;
 	}
-	public int getTotalRented(){
+	
+	/**
+	 * Get total rented
+	 * @return		Total rented
+	 */
+	public int getTotalRented()
+	{
 		return this.TotalRented;
 	}
+	
 	/**
 	 * Add item to customer
 	 * @param item		Item to rented to customer
