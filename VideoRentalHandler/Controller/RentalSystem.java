@@ -1,5 +1,6 @@
 //Import all models
 package Controller;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -119,15 +120,22 @@ public class RentalSystem
 	{	
 		try
 		{
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream("database.dat"));
+			File checkFile = new File("database.dat");
 			
-			Object obj = in.readObject();
-			this.database = (Database) obj;
-			this.CustomerH.LoadedFromDb(this.database.getCustomerList());			
-			this.ItemH.LoadedFromDb(this.database.getItemList());
-			this.ItemH.setId(this.database.getIdItem());
-			this.CustomerH.setId(this.database.getIdCustomer());
-			in.close();
+			if(checkFile.exists())
+			{
+				ObjectInputStream in = new ObjectInputStream(new FileInputStream(checkFile));
+				
+				Object obj = in.readObject();
+				
+				this.database = (Database) obj;
+				this.CustomerH.LoadedFromDb(this.database.getCustomerList());			
+				this.ItemH.LoadedFromDb(this.database.getItemList());
+				this.ItemH.setId(this.database.getIdItem());
+				this.CustomerH.setId(this.database.getIdCustomer());
+				in.close();
+			}
+			
 		}
 		catch (ClassNotFoundException | IOException e)
 		{
