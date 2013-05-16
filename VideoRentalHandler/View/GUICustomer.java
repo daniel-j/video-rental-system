@@ -117,7 +117,7 @@ public class GUICustomer extends JFrame
 				updateOutputList ();
 				clearFields();
 			}
-			else if(buttonText.equals("Show info"))
+			else if(buttonText.equals("Show info") )
 			{
 				if(selectedCustomer == null)
 				{
