@@ -151,4 +151,14 @@ public class Customer implements Serializable
 		this.rentedItems.add(item);
 		System.out.println(this.rentedItems.size());
 	}
+
+	@Override
+	public String toString()
+	{
+		return "Customer id=" + id + ", \nname=" + name + ", \nssn=" + ssn
+				+ ", \nrentedItems=" + rentedItems + ", \naddress=" + address
+				+ ", \npreference=" + preference + ", \nTotalRented=" + TotalRented;
+	}
+	
+	
 }
