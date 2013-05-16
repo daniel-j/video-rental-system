@@ -1,5 +1,5 @@
 //Import all models
-package videoRentalHouse;
+package Controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -31,13 +31,14 @@ public class RentalSystem
 		//Handlers and Database
 		this.CustomerH 		= new CustomerHandler();
 		this.ItemH 			= new ItemHandler();
+		this.RentalH 		= new RentalHandler();
 		
 		//Load
 		this.loadResult();
 		
 		this.NewsletterH	= new NewsletterHandler(this.CustomerH);
 		this.SearchH 		= new SearchHandler(this.ItemH, this.CustomerH);
-		this.RentalH 		= new RentalHandler(this.ItemH, this.CustomerH);
+		this.RentalH.setHandlers(this.ItemH, this.CustomerH);
 		this.database 		= new Database();
 		this.SystemGui		= new GUISystem(this);
 		//---------------------------------------
@@ -99,6 +100,7 @@ public class RentalSystem
 		boolean save = false;
 		this.database.addItemList(this.ItemH.getListOfItems());
 		this.database.addCustomerList(this.CustomerH.getListOfCustomers());
+		this.database.addCustomerWithRentsList(this.RentalH.listRented());
 		this.database.setIdItem(this.ItemH.getId());
 		this.database.setIdCustomer(this.CustomerH.getId());
 		try
@@ -137,6 +139,7 @@ public class RentalSystem
 				this.database = (Database) obj;
 				this.CustomerH.LoadedFromDb(this.database.getCustomerList());			
 				this.ItemH.LoadedFromDb(this.database.getItemList());
+				this.RentalH.LoadedFromDb(this.database.getCustomerWithRentsList());
 				this.ItemH.setId(this.database.getIdItem());
 				this.CustomerH.setId(this.database.getIdCustomer());
 				in.close();
