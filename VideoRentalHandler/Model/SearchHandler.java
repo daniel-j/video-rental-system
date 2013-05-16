@@ -24,18 +24,12 @@ public class SearchHandler
 		String returnString = "";
 	
 		Vector<String> Result = new Vector<String>();
-		
-		if(this.customers.size() < 1)
-		{
-		    Result.add("");
-		}
-		else
-		{
+	
 		    for (Customer cust : customers) 
 			{
 			   if(cust.getName().toUpperCase().equals(srcStr))
 			   {
-			       returnString = cust.getName();
+			       returnString = cust.toString();
 			       Result.add(returnString);
 			   }		   
 			   else if(isInteger(searchString))
@@ -49,35 +43,30 @@ public class SearchHandler
 			   }	   
 			   else if(cust.getSsn().equals(searchString))
 			   {
-				returnString = cust.getName();
+				returnString = cust.toString();
 				Result.add(returnString);
 					
 			   }
 			   else if(cust.getAddress().toUpperCase().equals(srcStr))
 			   {
-				returnString = cust.getName();
+				returnString = cust.toString();
 				Result.add(returnString);
 					
 			   }
 
 			}
-		}
 		
 		Vector<String> rtrVect = new Vector<String>();
 		
 		try
-		{		
-		    	if(Result.isEmpty())
+		{
+		    if(!Result.isEmpty())
+		    {
+			for(String str : Result)
 			{
-		    	    rtrVect.add("");
+			    rtrVect.add(str);
 			}
-			else
-			{
-			    for(String str : Result)
-			    {
-				rtrVect.add(str);
-			    }
-			}
+		    }
 		
 		}
 		catch (NullPointerException | ArrayIndexOutOfBoundsException e)
@@ -95,12 +84,7 @@ public class SearchHandler
 		
 		Vector<String> Result = new Vector<String>();
 		
-		if(this.items.size() < 1)
-		{
-		    Result.add("");
-		}
-		else
-		{
+		
 		    for(Item itm : items)
 			{
 				if(itm.getTitle().toUpperCase().equals(srcStr))
@@ -120,28 +104,23 @@ public class SearchHandler
 				 }
 				
 			}
-		}
+		
 		
 		Vector<String> rtrVect = new Vector<String>();
 
 		try
-		{		
-		    	if(Result.isEmpty())
+		{ 
+		    if(!Result.isEmpty())
+		    {
+			for(String str : Result)
 			{
-		    	    rtrVect.add("");
+			    rtrVect.add(str);
 			}
-			else
-			{
-			    for(String str : Result)
-			    {
-				rtrVect.add(str);
-			    }
-			}
-		
+		    }
 		}
 		catch (NullPointerException | ArrayIndexOutOfBoundsException e)
 		{
-			e.addSuppressed(null);
+		    e.addSuppressed(null);
 		}
 		
 		return rtrVect;
