@@ -1,15 +1,11 @@
 package View;
 
-import java.awt.Color;
+
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.AttributedCharacterIterator.Attribute;
-import java.util.Map;
-
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -20,8 +16,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-
-import Model.ItemPackage.*;
 import Model.ItemPackage.*;
 public class GUIItem extends JFrame
 {
