@@ -72,7 +72,7 @@ public class CustomerHandler implements Serializable
 	{
 		this.customers.elementAt(id).changeInfo(name, ssn, rentedItems, address, preference);
 		
-		return true;
+		return true; 
 	}
 	
 	/**
