@@ -3,7 +3,6 @@ package Model.ItemPackage;
 import java.io.Serializable;
 import java.util.Vector;
 
-
 public class ItemHandler implements Serializable
 {
 	private static final long serialVersionUID = 1L;
@@ -50,6 +49,20 @@ public class ItemHandler implements Serializable
 		}
 		added = true;
 		return added;
+	}
+	public boolean check(String testName)
+	{
+		boolean free = true;
+		
+		for(int i = 0; i < this.arrayOfItems.size(); i++)
+		{
+			if(this.arrayOfItems.get(i).getTitle().equals(testName))
+			{
+				free = false;
+			}
+		}
+		
+		return free;
 	}
 	public boolean editItem(int itemToEdit, String title, int id, int priceGroup, String genre, int releaseYear, String platform, String medium)
 	{

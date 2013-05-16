@@ -104,9 +104,16 @@ public class GUIItem extends JFrame
 				}
 				else
 				{
-					addItem();
-					output.setListData(ItemH.getAllItemsAsStrings());
-					clearFields();
+					if(ItemH.check(title.getText()))
+					{
+						addItem();
+						output.setListData(ItemH.getAllItemsAsStrings());
+						clearFields();
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Title already taken!! Choose another");
+					}
 				}
 			}
 			
@@ -219,16 +226,11 @@ public class GUIItem extends JFrame
 					String itemToEdit = output.getSelectedValue();
 					editItem(itemToEdit);
 					
-					buttons[0].setEnabled(false);
-					buttons[1].setEnabled(false);
-					buttons[2].setEnabled(false);
-					buttons[3].setEnabled(false);
-					buttons[4].setEnabled(false);
-					buttons[5].setEnabled(false);
-					buttons[6].setEnabled(false);
-					buttons[7].setEnabled(false);
+					for(JButton btn : buttons)
+					{
+						btn.setEnabled(false);
+					}
 					buttons[8].setEnabled(true);
-					buttons[9].setEnabled(false);
 				}
 			}
 			if(buttonText.equals("Change input"))
@@ -274,7 +276,6 @@ public class GUIItem extends JFrame
 					{
 						JOptionPane.showMessageDialog(null, "Wrong choice!!");
 					}
-					
 				}
 				else
 				{
@@ -312,10 +313,7 @@ public class GUIItem extends JFrame
 		{
 			if(itm.getTitle().equals(itemToChange))
 			{
-			
-				Item newItem = itm;
-						//this.ItemH.getItemByTitle(itemToChange);
-				
+				Item newItem = itm;				
 				
 				if(newItem instanceof Video)
 				{
