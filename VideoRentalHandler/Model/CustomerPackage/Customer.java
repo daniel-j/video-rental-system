@@ -27,7 +27,6 @@ public class Customer implements Serializable
 	public Customer() 
 	{
 		super();
-		//CustomerHandler.customerId++;
 		this.name = "";
 		this.ssn = "";
 		this.rentedItems = new Vector<Item>();
@@ -46,7 +45,6 @@ public class Customer implements Serializable
 	public Customer(String name, String ssn, String address, String preference) 
 	{
 		super();
-		//CustomerHandler.customerId++;
 		this.name = name;
 		this.ssn = ssn;
 		this.rentedItems = new Vector<Item>();
