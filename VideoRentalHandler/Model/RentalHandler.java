@@ -1,6 +1,7 @@
 //In this package
 package Model;
 
+import java.io.Serializable;
 import java.util.Vector;
 
 import Model.CustomerPackage.*;
@@ -9,19 +10,23 @@ import Model.ItemPackage.*;
 //Import what this class use
 
 
-public class RentalHandler
+public class RentalHandler implements Serializable
 {
 	private CustomerHandler CustomerH;
 	private ItemHandler ItemH;
 	private double TotalPrice;
 	private Vector<Customer> CustomerWithRentedItems;
 	
-	public RentalHandler(ItemHandler ItemHa, CustomerHandler CustomerHa)
+	public RentalHandler()
+	{
+		this.TotalPrice = 0;
+		this.CustomerWithRentedItems = new Vector<Customer>();
+	}
+	
+	public void setHandlers(ItemHandler ItemHa, CustomerHandler CustomerHa)
 	{
 		this.CustomerH = CustomerHa;
 		this.ItemH = ItemHa;
-		this.TotalPrice = 0;
-		this.CustomerWithRentedItems = new Vector<Customer>();
 	}
 	
 	public double calculatePrice(double IPrice)
@@ -103,4 +108,35 @@ public class RentalHandler
 		return true;
 	}
 	
+	public void returnItem(int customerIndex, int itemIndex)
+	{
+		this.CustomerWithRentedItems.elementAt(customerIndex).getRentedItems().get(itemIndex).setStatus(false);
+		this.CustomerWithRentedItems.elementAt(customerIndex).getRentedItems().remove(itemIndex);
+		
+		if(this.CustomerWithRentedItems.elementAt(customerIndex).getRentedItems().size() == 0)
+		{			
+			this.CustomerWithRentedItems.remove(customerIndex);
+		}
+	}
+	
+	public void returnItems(int index)
+	{
+		for(Item item : this.CustomerWithRentedItems.elementAt(index).getRentedItems())
+		{
+			item.setStatus(false);
+		}
+		
+		this.CustomerWithRentedItems.elementAt(index).getRentedItems().removeAllElements();
+		
+		this.CustomerWithRentedItems.remove(index);
+	}
+	
+	/**
+	 * Load from database
+	 * @param Customers
+	 */
+	public void LoadedFromDb(Vector<Customer> Customers)
+	{
+		this.CustomerWithRentedItems = Customers;
+	}
 }

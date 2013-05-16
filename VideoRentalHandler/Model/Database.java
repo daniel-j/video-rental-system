@@ -13,6 +13,7 @@ public class Database implements Serializable
 	private static final long	serialVersionUID	= 1L;
 	private Vector<Item> items;
 	private Vector<Customer> customers;
+	private Vector<Customer> customersWithRents;
 	private int idCustomer;
 	private int idItem;
 	/**
@@ -77,9 +78,17 @@ public class Database implements Serializable
 	}
 	
 	/**
-	 * Get item
-	 * @param index		Index of item
-	 * @return			Item
+	 * Add list of customers with rentings to "database"
+	 * @param customerList	List of customers to be saved
+	 */
+	public void addCustomerWithRentsList(Vector<Customer> customerList)
+	{
+		this.customersWithRents = customerList;
+	}
+	
+	/**
+	 * Get items
+	 * @return			Items
 	 */
 	public Vector<Item> getItemList()
 	{
@@ -87,12 +96,20 @@ public class Database implements Serializable
 	}
 	
 	/**
-	 * Get customer
-	 * @param index		Index of customer
-	 * @return			Customer
+	 * Get customers
+	 * @return			Customers
 	 */
 	public Vector<Customer> getCustomerList()
 	{
 		return this.customers;
+	}
+	
+	/**
+	 * Get customers with rents
+	 * @return			Customers with rents
+	 */
+	public Vector<Customer> getCustomerWithRentsList()
+	{
+		return this.customersWithRents;
 	}
 }

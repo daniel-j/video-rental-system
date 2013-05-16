@@ -86,8 +86,8 @@ public class GUINewsletter extends JFrame
 			this.titleField.setText("");
 			this.preferenceComboBox.setSelectedIndex(0);
 			
-			JOptionPane.showMessageDialog(null, "Message sent", "ERROR",
-				    JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Message sent", "INFORMATION",
+				    JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
 	

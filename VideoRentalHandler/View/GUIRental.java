@@ -58,13 +58,94 @@ public class GUIRental extends JFrame
 				rent();
 			}
 			else if(buttonText.equals("Return item")){
-				returnMovie();
+				returnItems();
 			}
 		}
 	}
 	
-	private void returnMovie(){
-		System.out.println("hej");
+	private void returnItems()
+	{
+		if(this.rentedList.isSelectionEmpty())
+		{
+			JOptionPane.showMessageDialog(null, "No selection made", "ERROR",
+				    JOptionPane.ERROR_MESSAGE);
+		}
+		else
+		{
+			String str = this.rentedList.getSelectedValue();
+			int index = this.rentedList.getSelectedIndex();
+			boolean found = false;
+			int foundIndex = 0;
+			
+			for(int i = 0; i < this.RentalH.listRented().size() && found != true; i++)
+			{
+				if(this.RentalH.listRented().elementAt(i).getName().equals(str))
+				{	
+					foundIndex = i;
+					found = true;
+				}
+			}
+			
+			if(found)
+			{
+				this.RentalH.returnItems(foundIndex);
+			}
+			else
+			{
+				String temp;
+				boolean foundTemp = false;
+				int itemIndex = index;
+				int custIndex = 0;
+				
+				while(itemIndex > 0 && foundTemp != true)
+				{
+					temp = this.rentedList.getModel().getElementAt(itemIndex);
+					
+					for(int i = 0; i < this.RentalH.listRented().size() && foundTemp != true; i++)
+					{
+						if(temp.equals(this.RentalH.listRented().get(i).getName()))
+						{
+							custIndex = i;
+							foundTemp = true;
+						}
+					}
+					
+					itemIndex--;
+				}
+				
+				this.RentalH.returnItem(custIndex, itemIndex);
+				
+				
+			}
+			
+			this.rentedList.removeAll();
+			
+			Vector<Customer> cust = this.RentalH.listRented();
+			Vector<String> list = new Vector<String>();
+			
+			for(Customer customer : cust)
+			{
+				list.add(customer.getName());
+				
+				for(Item item : customer.getRentedItems())
+				{
+					list.add(" -" + item.getTitle());
+				}
+			}
+			
+			this.rentedList.setListData(list);
+			
+			if(found)
+			{
+				JOptionPane.showMessageDialog(null, "All items returned", "INFORMATION",
+					    JOptionPane.INFORMATION_MESSAGE);
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, "Item retured", "INFORMATION",
+					    JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
 	}
 
 	private void listRented()
@@ -84,7 +165,7 @@ public class GUIRental extends JFrame
 				list.add(customer.getName());
 				for(Item item : customer.getRentedItems())
 				{
-					list.add(item.getTitle());
+					list.add(" -" + item.getTitle());
 				}
 			}
 			
@@ -138,6 +219,9 @@ public class GUIRental extends JFrame
 		else
 		{
 			this.RentalH.Rent(this.nameField.getText());
+			
+			JOptionPane.showMessageDialog(null, "Rent made", "Information",
+				    JOptionPane.INFORMATION_MESSAGE);
 			dispose();
 		}
 	}

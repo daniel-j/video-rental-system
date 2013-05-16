@@ -155,9 +155,8 @@ public class Customer implements Serializable
 	@Override
 	public String toString()
 	{
-		return "Customer id=" + id + ", \nname=" + name + ", \nssn=" + ssn
-				+ ", \nrentedItems=" + rentedItems + ", \naddress=" + address
-				+ ", \npreference=" + preference + ", \nTotalRented=" + TotalRented;
+	    return "<html>Name: " + getName()  + "<br>SSN: " + getSsn() + "<br>Address: " 
+			+ getAddress() + "<br>Preference: " + getPreference() + "<br>Customer ID: " + getId() + "<br>Total rented: " + getTotalRented() + "<br><br></html>";
 	}
 	
 	
