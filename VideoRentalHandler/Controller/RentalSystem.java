@@ -1,5 +1,5 @@
 //Import all models
-package Controller;
+package videoRentalHouse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -31,6 +31,10 @@ public class RentalSystem
 		//Handlers and Database
 		this.CustomerH 		= new CustomerHandler();
 		this.ItemH 			= new ItemHandler();
+		
+		//Load
+		this.loadResult();
+		
 		this.NewsletterH	= new NewsletterHandler(this.CustomerH);
 		this.SearchH 		= new SearchHandler(this.ItemH, this.CustomerH);
 		this.RentalH 		= new RentalHandler(this.ItemH, this.CustomerH);
@@ -38,8 +42,7 @@ public class RentalSystem
 		this.SystemGui		= new GUISystem(this);
 		//---------------------------------------
 		
-		//Load
-		this.loadResult();
+		
 	}
 	
 	/**
