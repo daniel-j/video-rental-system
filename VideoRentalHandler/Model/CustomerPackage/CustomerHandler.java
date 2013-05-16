@@ -104,6 +104,19 @@ public class CustomerHandler implements Serializable
 		}
 		return temp;
 	}
+	public boolean check(String testName)
+	{
+		boolean free = true;
+		
+		for(int i = 0; i < this.customers.size(); i++)
+		{
+			if(this.customers.get(i).getName().equals(testName))
+			{
+				free = false;
+			}
+		}
+		return free;
+	}
 	
 	/**
 	 * Set item to Customer

@@ -70,9 +70,16 @@ public class GUICustomer extends JFrame
 			{
 				if(name.getText() != "" && adress.getText() != "" && ssn.getText() != "" && preferences.getSelectedIndex() != 0)
 				{
-					addCustomer();
-					updateOutputList ();
-					clearFields();
+					if(cHandler.check(name.getText()))
+					{
+						addCustomer();
+						updateOutputList ();
+						clearFields();
+					}
+					else
+					{
+						JOptionPane.showMessageDialog(null, "Name already taken!! Choose another");
+					}
 				}
 				else
 				{
