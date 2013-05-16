@@ -113,7 +113,8 @@ public class GUICustomer extends JFrame
 			else if(buttonText.equals("Change info"))
 			{
 				changeCustomer(selectedCustomer);
-				showInfo(selectedCustomer);
+				//showInfo(selectedCustomer);
+				updateOutputList ();
 				clearFields();
 			}
 			else if(buttonText.equals("Show info"))
