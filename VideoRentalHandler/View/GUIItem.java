@@ -196,8 +196,6 @@ public class GUIItem extends JFrame
 								JOptionPane.showMessageDialog(null, "Wrong choice...");
 							}
 						}
-							
-						
 					}
 					else
 					{
@@ -236,16 +234,17 @@ public class GUIItem extends JFrame
 			if(buttonText.equals("Change input"))
 			{
 				selectedIndex = output.getSelectedIndex();
-				String itemToChange = output.getSelectedValue();
+				String itemToChange = String.valueOf(output.getSelectedValue());
 				changeItem(itemToChange);
-				output.setListData(ItemH.getItemInfo(selectedIndex));
+				JOptionPane.showMessageDialog(null, ItemH.getItemInfo(selectedIndex));
+				
 				clearFields();
 				for(JButton butt : buttons)
 				{
 					butt.setEnabled(true);
 				}
 				buttons[8].setEnabled(false);
-				output.setEnabled(false);
+				output.setListData(ItemH.getAllItemsAsStrings());
 			}
 			if(buttonText.equals("Edit pricegroup"))
 			{
@@ -308,23 +307,34 @@ public class GUIItem extends JFrame
 	// CHANGE ITEM
 	private void changeItem(String itemToChange)
 	{
-		Item newItem = this.ItemH.getItem(itemToChange);
 		
-		if(newItem instanceof Video)
+		for(Item itm : this.ItemH.getListOfItems())
 		{
-			newItem.setTitle(this.title.getText());
-			newItem.setPriceGroup(this.priceGroup.getSelectedIndex());
-			((Video) newItem).setGenre(String.valueOf(this.genre.getSelectedItem()));
-			((Video) newItem).setReleaseYear(Integer.parseInt((String) this.releaseYear.getSelectedItem()));
-			((Video) newItem).setMedium(String.valueOf(this.medium.getSelectedItem()));
-		}
-		else
-		{
-			newItem.setTitle(this.title.getText());
-			newItem.setPriceGroup(this.priceGroup.getSelectedIndex());
-			((Game) newItem).setGenre(String.valueOf(this.genre.getSelectedItem()));
-			((Game) newItem).setReleaseYear(Integer.parseInt((String) this.releaseYear.getSelectedItem()));
-			((Game) newItem).setPlatform(String.valueOf(this.platform.getSelectedItem()));
+			if(itm.getTitle().equals(itemToChange))
+			{
+			
+				Item newItem = itm;
+						//this.ItemH.getItemByTitle(itemToChange);
+				
+				
+				if(newItem instanceof Video)
+				{
+					newItem.setTitle(this.title.getText());
+					newItem.setPriceGroup(this.priceGroup.getSelectedIndex());
+					((Video) newItem).setGenre(String.valueOf(this.genre.getSelectedItem()));
+					((Video) newItem).setReleaseYear(Integer.parseInt((String) this.releaseYear.getSelectedItem()));
+					((Video) newItem).setMedium(String.valueOf(this.medium.getSelectedItem()));	
+				}
+				else
+				{
+					newItem.setTitle(this.title.getText());
+					newItem.setPriceGroup(this.priceGroup.getSelectedIndex());
+					((Game) newItem).setGenre(String.valueOf(this.genre.getSelectedItem()));
+					((Game) newItem).setReleaseYear(Integer.parseInt((String) this.releaseYear.getSelectedItem()));
+					((Game) newItem).setPlatform(String.valueOf(this.platform.getSelectedItem()));
+				}
+			}
+			
 		}
 		// curr in stock
 //		int currInStock = Integer.parseInt(JOptionPane.showInputDialog("How many copies?" + "\nPrevious stockcount was: " + newItem.getInStock()));

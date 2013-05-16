@@ -148,6 +148,20 @@ public class ItemHandler implements Serializable
 		}
 		return temp;
 	}
+	public Item getItemByTitle(String title)
+	{
+		Item temp = null;
+		boolean found = false;
+		for(int i = 0; i < this.arrayOfItems.size() && found != true; i++)
+		{
+			if(this.arrayOfItems.get(i).getTitle().equals(title))
+			{
+				temp = this.arrayOfItems.get(i);
+				found = true;
+			}
+		}
+		return temp;
+	}
 	
 	public boolean setItemStatus(int id, boolean rented)
 	{
