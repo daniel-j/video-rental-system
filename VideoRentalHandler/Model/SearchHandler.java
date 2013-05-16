@@ -13,25 +13,18 @@ public class SearchHandler
 	
 	public SearchHandler(ItemHandler ItemH, CustomerHandler CustomerH)
 	{
-	    //Vectors for local storage	    
+	    //Vectors for local storage	 
 	    this.customers = CustomerH.getListOfCustomers();
 	    this.items = ItemH.getListOfItems();
 	    	   
 	}
 	public Vector<String> SearchCustomer(String searchString)
 	{
+	    	String srcStr = searchString.toUpperCase();
 		String returnString = "";
 	
-		Vector<String> Result;
+		Vector<String> Result = new Vector<String>();
 		
-		if(this.customers.size() == 0)
-		{
-		    Result = new Vector<String>();
-		}
-		else
-		{
-		    Result = new Vector<String>();
-		}
 		if(this.customers.size() < 1)
 		{
 		    Result.add("");
@@ -40,12 +33,11 @@ public class SearchHandler
 		{
 		    for (Customer cust : customers) 
 			{
-			   if(cust.getName().equals(searchString))
+			   if(cust.getName().toUpperCase().equals(srcStr))
 			   {
 			       returnString = cust.getName();
 			       Result.add(returnString);
-			   }
-			   
+			   }		   
 			   else if(isInteger(searchString))
 			   {
 			       if(Integer.parseInt(searchString) == cust.getId())
@@ -54,15 +46,14 @@ public class SearchHandler
 				   Result.add(returnString);
 			       }
 					
-			   }
-			   
+			   }	   
 			   else if(cust.getSsn().equals(searchString))
 			   {
 				returnString = cust.getName();
 				Result.add(returnString);
 					
 			   }
-			   else if(cust.getAddress().equals(searchString))
+			   else if(cust.getAddress().toUpperCase().equals(srcStr))
 			   {
 				returnString = cust.getName();
 				Result.add(returnString);
@@ -99,13 +90,12 @@ public class SearchHandler
 	
 	public Vector<String> SearchItem(String searchString)
 	{    
+	    	String srcStr = searchString.toUpperCase();
 		String returnString = "";
-		int size = this.items.size();
 		
 		Vector<String> Result = new Vector<String>();
 		
-		
-		if(size < 1)
+		if(this.items.size() < 1)
 		{
 		    Result.add("");
 		}
@@ -113,7 +103,7 @@ public class SearchHandler
 		{
 		    for(Item itm : items)
 			{
-				if(itm.getTitle().equals(searchString))
+				if(itm.getTitle().toUpperCase().equals(srcStr))
 				{
 				    returnString = itm.toString();
 				    Result.add(returnString);
