@@ -64,7 +64,7 @@ public class GUIItem extends JFrame
 		{
 			
 			String buttonText = event.getActionCommand();
-			selectedItem = output.getSelectedValue();
+			selectedItem = String.valueOf(output.getSelectedValue());
 			selectedIndex = output.getSelectedIndex();
 			output.setEnabled(true);
 			
@@ -120,26 +120,48 @@ public class GUIItem extends JFrame
 			{
 				selectedIndex = output.getSelectedIndex();
 				
-				if(selectedItem != null)
+				if(selectedItem.equals(null) || selectedIndex == -1)
 				{
-					JOptionPane.showMessageDialog(null, "There are: " + ItemH.currentInStock(selectedIndex) + " items of this type.");
+					JOptionPane.showMessageDialog(null, "No item selected!");
 				}
 				else
 				{
-					JOptionPane.showMessageDialog(null, "No item selected!");
+					JOptionPane.showMessageDialog(null, "There are: " + ItemH.currentInStock(selectedIndex) + " items of this type.");
 				}
 			}
 			if(buttonText.equals("Get list of all"))
 			{
-				output.setListData(ItemH.getAllItemsAsStrings());
+				if(ItemH.getListOfItems().size() == 0)
+				{
+					JOptionPane.showMessageDialog(null, "Empty List...");
+				}
+				else
+				{
+					output.setListData(ItemH.getAllItemsAsStrings());
+				}
+				
 			}
 			if(buttonText.equals("Get all videos"))
 			{
-				output.setListData(ItemH.getAllVideos());
+				if(selectedItem.equals("Empty List...") || selectedItem.equals(null))
+				{
+					JOptionPane.showMessageDialog(null, "Cant choose an empty list!");
+				}
+				else
+				{
+					output.setListData(ItemH.getAllVideos());
+				}
 			}
 			if(buttonText.equals("Get all games"))
 			{
-				output.setListData(ItemH.getAllGames());
+				if(selectedItem.equals("Empty List...") || selectedItem.equals(null))
+				{
+					JOptionPane.showMessageDialog(null, "Cant choose an empty list!");
+				}
+				else
+				{
+					output.setListData(ItemH.getAllGames());
+				}
 			}
 			if(buttonText.equals("Show item info"))
 			{
@@ -157,20 +179,35 @@ public class GUIItem extends JFrame
 			if(buttonText.equals("Remove item"))
 			{
 				selectedIndex = output.getSelectedIndex();
-				if(selectedItem != null)
+				
+				if(selectedIndex != -1)
 				{
 					int answer = JOptionPane.showConfirmDialog(null, "You are about to delete: " + selectedItem + "! \n Are you sure?");
 					
 					if(answer == 0)
 					{
-						int choice = Integer.parseInt(JOptionPane.showInputDialog("Remove all units of this item? (1) \nRemove this single item? (2)"));
+						String choice = JOptionPane.showInputDialog("Remove all units of this item? (1) \nRemove this single item? (2)");
+
 						
-						ItemH.removeItem(choice, selectedItem, selectedIndex);
-						output.setListData(ItemH.getAllItemsAsStrings());
+						if(choice != null)
+						{
+							if(choice.equals("1") || choice.equals("2"))
+							{
+								int parsedChoice = Integer.parseInt(choice);
+								ItemH.removeItem(parsedChoice, selectedItem, selectedIndex);
+								output.setListData(ItemH.getAllItemsAsStrings());
+							}
+							else
+							{
+								JOptionPane.showMessageDialog(null, "Wrong choice...");
+							}
+						}
+							
+						
 					}
 					else
 					{
-						JOptionPane.showMessageDialog(null, "No item selected!");
+						;
 					}
 				}
 				else
@@ -181,7 +218,7 @@ public class GUIItem extends JFrame
 			if(buttonText.equals("Edit item"))
 			{
 				selectedIndex = output.getSelectedIndex();
-				if(selectedItem == null)
+				if(selectedItem == null || selectedItem.equals("Empty List...") || selectedIndex == -1)
 				{
 					JOptionPane.showMessageDialog(null, "No item selected!");
 				}

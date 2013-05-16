@@ -183,7 +183,7 @@ public class ItemHandler implements Serializable
 		int counter = 0;
 		if(this.arrayOfItems.isEmpty())
 		{
-			String[] empty = new String[]{"Empty List.."};
+			String[] empty = new String[]{"Empty List..."};
 			return empty;
 		}
 		else
@@ -203,7 +203,7 @@ public class ItemHandler implements Serializable
 		
 		if(this.arrayOfItems.isEmpty())
 		{
-			String[] empty = new String[]{"Empty List.."};
+			String[] empty = new String[]{"Empty List..."};
 			return empty;
 		}
 		else
@@ -225,7 +225,7 @@ public class ItemHandler implements Serializable
 		
 		if(this.arrayOfItems.isEmpty())
 		{
-			String[] empty = new String[]{"Empty List.."};
+			String[] empty = new String[]{"Empty List..."};
 			return empty;
 		}
 		else
@@ -268,12 +268,12 @@ public class ItemHandler implements Serializable
 		
 		if(this.arrayOfItems.isEmpty())
 		{
-			String[] empty = new String[]{"Empty List.."};
+			String[] empty = new String[]{"Empty List..."};
 			return empty;
 		}
 		else
 		{
-			str[0] = this.arrayOfItems.get(pos).toString();
+			str[0] =this.arrayOfItems.get(pos).toString();
 		}
 		return str;
 	}
