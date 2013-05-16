@@ -160,7 +160,7 @@ public class GUIItem extends JFrame
 			if(buttonText.equals("Show item info"))
 			{
 				selectedIndex = output.getSelectedIndex();
-				if(selectedItem == null)
+				if(selectedItem == null || selectedIndex == -1)
 				{
 					JOptionPane.showMessageDialog(null, "No item selected!");
 				}
@@ -256,17 +256,24 @@ public class GUIItem extends JFrame
 				Double price = null;
 				if(input != null)
 				{
-					pg = Integer.parseInt(input);
-					String input2 = JOptionPane.showInputDialog("New price?");
-					if(input2 != null)
+					if(input.equals("1") ||input.equals("2") ||input.equals("3") )
 					{
-						price = Double.valueOf(input2);
-						ItemH.editPricegroup(pg,  price);
-						output.setListData(ItemH.listPriceGroups());
+						pg = Integer.parseInt(input);
+						String input2 = JOptionPane.showInputDialog("New price?");
+						if(input2 != null)
+						{
+							price = Double.valueOf(input2);
+							ItemH.editPricegroup(pg,  price);
+							output.setListData(ItemH.listPriceGroups());
+						}
+						else
+						{
+							return;
+						}
 					}
 					else
 					{
-						return;
+						JOptionPane.showMessageDialog(null, "Wrong choice!!");
 					}
 					
 				}
