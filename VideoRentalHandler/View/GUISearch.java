@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -16,6 +17,7 @@ import javax.swing.JFrame;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
 
@@ -60,54 +62,56 @@ public class GUISearch extends JFrame
 			
 		}
 
-		private void searchItem() 
+		private void searchItem()
 		{
-			if(this.searchField.equals(null))
+		    if(!this.searchField.equals(null))
+		    {
+			String searchString = this.searchField.getText();
+
+			if(this.SearchH.SearchItem(searchString).isEmpty())
 			{
-				String searchString = this.searchField.getText();
-				
-				if(this.SearchH.SearchItem(searchString) != null)
-				{
-					this.resultList.setListData(this.SearchH.SearchItem(searchString));
-				}
-				else
-				{
-					this.resultList.clearSelection();
-					JOptionPane.showMessageDialog(null, "No results were found");
-				}
+			    this.resultList.clearSelection();
+			    JOptionPane.showMessageDialog(null, "No results were found");
+			    
 			}
-			
 			else
 			{
-				JOptionPane.showMessageDialog(null, "Please enter something to search for");
+			    this.resultList.setListData(this.SearchH.SearchItem(searchString));
 			}
-			
+		    }
+
+		    else
+		    {
+			JOptionPane.showMessageDialog(null, "Please enter something to search for");
+		    }
+
 		}
 
 		private void searchCustomer()
 		{
-			if(this.searchField.equals(null))
+		    if(!this.searchField.equals(null))
+		    {
+			String searchString = this.searchField.getText();
+
+			Vector<String> result = this.SearchH.SearchCustomer(searchString);
+
+			if(result.isEmpty())
 			{
-				String searchString = this.searchField.getText();
-				
-				String[] result = this.SearchH.SearchCustomer(searchString);
-				
-				if(result != null)
-				{
-					this.resultList.setListData(result);
-				}
-				else
-				{
-					this.resultList.clearSelection();
-					JOptionPane.showMessageDialog(null, "No results were found");
-				}
+			    this.resultList.clearSelection();
+			    JOptionPane.showMessageDialog(null, "No results were found");
+			    
 			}
-			
 			else
 			{
-				JOptionPane.showMessageDialog(null, "Please enter something to search for");
+			    this.resultList.setListData(result);
 			}
-			
+		    }
+
+		    else
+		    {
+			JOptionPane.showMessageDialog(null, "Please enter something to search for");
+		    }
+
 		}
 		
 		public GUISearch(SearchHandler SearchHandler) 
@@ -158,7 +162,7 @@ public class GUISearch extends JFrame
 		private void addListToTheRight()
 		{
 			this.resultList.setBorder(BorderFactory.createTitledBorder("Result list"));
-			this.contentPane.add(resultList);
+			this.contentPane.add(new JScrollPane(resultList));
 			
 		}
 		
