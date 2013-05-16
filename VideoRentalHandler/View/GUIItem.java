@@ -1,10 +1,15 @@
 package View;
 
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.AttributedCharacterIterator.Attribute;
+import java.util.Map;
+
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -145,8 +150,7 @@ public class GUIItem extends JFrame
 				}
 				else
 				{
-					output.setListData(ItemH.getItemInfo(selectedIndex));
-					output.setEnabled(false);
+					JOptionPane.showMessageDialog(null, ItemH.getItemInfo(selectedIndex));
 				}
 				
 			}
