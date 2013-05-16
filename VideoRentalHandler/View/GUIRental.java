@@ -142,7 +142,7 @@ public class GUIRental extends JFrame
 			}
 			else
 			{
-				JOptionPane.showMessageDialog(null, "Item retured", "INFORMATION",
+				JOptionPane.showMessageDialog(null, "Item returned", "INFORMATION",
 					    JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
