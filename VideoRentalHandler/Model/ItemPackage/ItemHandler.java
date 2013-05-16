@@ -36,7 +36,6 @@ public class ItemHandler implements Serializable
 		{
 		this.arrayOfItems.add(new Video(title, priceGroup, genre, releaseYear, medium, ItemHandler.id, inStock));
 		ItemHandler.id++;
-		System.out.println(ItemHandler.id);
 		}
 		added = true;
 		return added;
