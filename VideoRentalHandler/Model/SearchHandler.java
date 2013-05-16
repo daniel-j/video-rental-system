@@ -31,7 +31,13 @@ public class SearchHandler
 			   {
 			       returnString = cust.toString();
 			       Result.add(returnString);
-			   }		   
+			   }	
+			   else if(searchString.equals(cust.getSsn()))
+			   {
+				returnString = cust.toString();
+				Result.add(returnString);
+						
+			   }
 			   else if(isInteger(searchString))
 			   {
 			       if(Integer.parseInt(searchString) == cust.getId())
@@ -41,12 +47,7 @@ public class SearchHandler
 			       }
 					
 			   }	   
-			   else if(cust.getSsn().equals(searchString))
-			   {
-				returnString = cust.toString();
-				Result.add(returnString);
-					
-			   }
+	
 			   else if(cust.getAddress().toUpperCase().equals(srcStr))
 			   {
 				returnString = cust.toString();
