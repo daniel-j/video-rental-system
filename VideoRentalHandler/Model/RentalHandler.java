@@ -56,11 +56,10 @@ public class RentalHandler
 		
 	}
 	
-	public void setItemStatus(Item item, boolean rented)
-	{
-		item.setStatus(rented);
-		//Item CurrentItem = this.getItem(ItemName);
-		//CurrentItem.setStatus(rented);
+	public void setItemStatus(String ItemName, boolean rented)
+	{		
+		Item CurrentItem = this.getItem(ItemName);
+		CurrentItem.setStatus(rented);
 	}
 	
 	public Item getItem(String ItemName)
@@ -94,7 +93,13 @@ public class RentalHandler
 	public boolean Rent(String CustomerName){
 		//Adds the Customer to the vector with customers with rented items
 		Customer CurrentCustomer = this.getCustomer(CustomerName);
+		for(int i = 0; i<this.CustomerWithRentedItems.size(); i++){
+			if(this.CustomerWithRentedItems.elementAt(i).getName().equals(CustomerName)){
+				this.CustomerWithRentedItems.remove(i);
+			}
+		}
 		this.CustomerWithRentedItems.add(CurrentCustomer);
+		this.TotalPrice = 0;
 		return true;
 	}
 	

@@ -57,32 +57,35 @@ public class GUIRental extends JFrame
 			{
 				rent();
 			}
+			else if(buttonText.equals("Return item")){
+				returnMovie();
+			}
 		}
 	}
 	
+	private void returnMovie(){
+		System.out.println("hej");
+	}
+
 	private void listRented()
 	{
-		String name = this.nameField.getText();
-		Customer cust = this.RentalH.getCustomer(name);
+		Vector<Customer> cust = this.RentalH.listRented();
 		
-		
-		if(name.equals(""))
+		if(cust.size() == 0)
 		{
-			JOptionPane.showMessageDialog(null, "You have to enter a name", "ERROR",
-				    JOptionPane.ERROR_MESSAGE);
-		}
-		else if(cust == null)
-		{
-			JOptionPane.showMessageDialog(null, "No customer with that name", "ERROR",
+			JOptionPane.showMessageDialog(null, "No rentings", "ERROR",
 				    JOptionPane.ERROR_MESSAGE);
 		}
 		else
 		{
 			Vector<String> list = new Vector<String>();
 			
-			for(Item item : cust.getRentedItems())
-			{
-				list.add(item.getTitle());
+			for(Customer customer : cust){
+				list.add(customer.getName());
+				for(Item item : customer.getRentedItems())
+				{
+					list.add(item.getTitle());
+				}
 			}
 			
 			this.rentedList.setListData(list);
@@ -106,7 +109,6 @@ public class GUIRental extends JFrame
 		}
 		else
 		{
-			//Inte klar har inte GUICustomer så kan inte skapa en kund
 			this.RentalH.rentToCustomer(this.nameField.getText(), (String)this.itembox.getModel().getSelectedItem(), Integer.parseInt(this.daysField.getText()));
 			this.NewRentingOrder.add((String)this.itembox.getSelectedItem());
 			this.newRentList.setListData(this.NewRentingOrder);
@@ -136,6 +138,7 @@ public class GUIRental extends JFrame
 		else
 		{
 			this.RentalH.Rent(this.nameField.getText());
+			dispose();
 		}
 	}
 	
@@ -196,11 +199,18 @@ public class GUIRental extends JFrame
 		Dimension dim = button1.getPreferredSize();
 		button1.setSize(dim);
 		
+		JButton button2 = new JButton("Return item");
+		button2.addActionListener(bListener);
+		button2.setLocation(125, 25);
+		dim = button2.getPreferredSize();
+		button2.setSize(dim);
+		
 		JScrollPane jsp = new JScrollPane(this.rentedList);
 		jsp.setSize(250, 200);
 		jsp.setLocation(25, 60);
 		
 		panel.add(button1);
+		panel.add(button2);
 		panel.add(jsp);
 		
 		this.contentPane.add(panel);
@@ -265,7 +275,7 @@ public class GUIRental extends JFrame
 		button2.addActionListener(bListener);
 		button2.setLocation(100, 275);
 		dim = button2.getPreferredSize();
-		button2.setSize(dim);
+		button2.setSize(dim);	
 		
 		JScrollPane jsp = new JScrollPane(this.newRentList);
 		jsp.setSize(250, 125);
