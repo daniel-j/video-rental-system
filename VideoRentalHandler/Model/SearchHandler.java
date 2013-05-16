@@ -13,17 +13,17 @@ import java.util.Vector;
 public class SearchHandler
 {
 	
-	/** The customers. */
+	/** The local vector for customers. */
 	private Vector <Customer> customers;
 	
-	/** The items. */
+	/** The local vector for items. */
 	private Vector <Item> items;
 	
 	/**
 	 * Instantiates a new search handler.
 	 *
-	 * @param ItemH the item h
-	 * @param CustomerH the customer h
+	 * @param ItemH the item handler
+	 * @param CustomerH the customer handler
 	 */
 	public SearchHandler(ItemHandler ItemH, CustomerHandler CustomerH)
 	{
@@ -36,8 +36,8 @@ public class SearchHandler
 	/**
 	 * Search customer.
 	 *
-	 * @param searchString the search string
-	 * @return the vector
+	 * @param searchString the search string that the user enters
+	 * @return the vector that is returned to the GUI
 	 */
 	public Vector<String> SearchCustomer(String searchString)
 	{
@@ -102,8 +102,8 @@ public class SearchHandler
 	/**
 	 * Search item.
 	 *
-	 * @param searchString the search string
-	 * @return the vector
+	 * @param searchString the search string that the user enters
+	 * @return the vector that is returned to the GUI
 	 */
 	public Vector<String> SearchItem(String searchString)
 	{    
@@ -157,8 +157,8 @@ public class SearchHandler
 	/**
 	 * Checks if is integer.
 	 *
-	 * @param s the s
-	 * @return true, if is integer
+	 * @param s the string to be checked
+	 * @return true, if the string is an integer
 	 */
 	private boolean isInteger(String s) 
 	{
