@@ -6,11 +6,25 @@ import Model.ItemPackage.*;
 import java.util.Vector;
 
 
+
+/**
+ * The Class SearchHandler.
+ */
 public class SearchHandler
 {
+	
+	/** The customers. */
 	private Vector <Customer> customers;
+	
+	/** The items. */
 	private Vector <Item> items;
 	
+	/**
+	 * Instantiates a new search handler.
+	 *
+	 * @param ItemH the item h
+	 * @param CustomerH the customer h
+	 */
 	public SearchHandler(ItemHandler ItemH, CustomerHandler CustomerH)
 	{
 	    //Vectors for local storage	 
@@ -18,6 +32,13 @@ public class SearchHandler
 	    this.items = ItemH.getListOfItems();
 	    	   
 	}
+	
+	/**
+	 * Search customer.
+	 *
+	 * @param searchString the search string
+	 * @return the vector
+	 */
 	public Vector<String> SearchCustomer(String searchString)
 	{
 	    	String srcStr = searchString.toUpperCase();
@@ -78,6 +99,12 @@ public class SearchHandler
 		return rtrVect;
 	}
 	
+	/**
+	 * Search item.
+	 *
+	 * @param searchString the search string
+	 * @return the vector
+	 */
 	public Vector<String> SearchItem(String searchString)
 	{    
 	    	String srcStr = searchString.toUpperCase();
@@ -127,6 +154,12 @@ public class SearchHandler
 		return rtrVect;
 	}
 	
+	/**
+	 * Checks if is integer.
+	 *
+	 * @param s the s
+	 * @return true, if is integer
+	 */
 	private boolean isInteger(String s) 
 	{
 	    try 
